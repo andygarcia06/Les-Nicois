@@ -1,0 +1,407 @@
+@charset "UTF-8";
+:root {
+  view-transition-name: root; }
+
+@font-face {
+  font-family: 'Apercu Mono';
+  src: url("../fonts/Apercu-Mono.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'JeanLuc Thin';
+  src: url("../fonts/JeanLuc-Thin.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal; }
+@view-transition {
+  navigation: auto; }
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%; }
+
+body {
+  margin: 0 250px;
+  font-family: "Apercu Mono", Arial, sans-serif;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  /* iOS overflow scrolling */
+  scroll-behavior: smooth;
+  /* Smooth scrolling */
+  overscroll-behavior: none;
+  /* Désactiver le défilement élastique */ }
+
+* {
+  box-sizing: border-box; }
+
+.section-link {
+  text-decoration: none;
+  display: block; }
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* Assurez-vous que le contenu débordant est masqué */
+  transition: transform 0.4s ease;
+  /* Ajout de la transition pour le zoom arrière du background */ }
+
+#section-1 {
+  background-image: url("../img/background/section1.jpg");
+  /* Chemin de l'image 1 */ }
+
+#section-2 {
+  background-image: url("../img/background/section2.jpg");
+  /* Chemin de l'image 2 */ }
+
+#section-3 {
+  background-image: url("../img/background/section3.jpg");
+  /* Chemin de l'image 3 */ }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.25); }
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: black;
+  transition: transform 0.4s ease;
+  /* Ajout de la transition pour hover et retour */ }
+  .content.right-aligned {
+    text-align: right;
+    padding-right: 20px;
+    /* Ajuster selon vos préférences */ }
+
+h1 {
+  font-family: "JeanLuc Thin", Arial, sans-serif;
+  font-size: 3vw;
+  margin: 0;
+  margin-bottom: 0.5vw;
+  /* Ajuster la marge entre h1 et p */ }
+  h1 .highlight {
+    font-weight: bold;
+    font-size: 6vw; }
+
+p {
+  font-family: "Apercu Mono", Arial, sans-serif;
+  font-size: 1vw;
+  margin: -10px; }
+
+@media (max-width: 768px) {
+  body {
+    margin: 0; }
+
+  h1 {
+    font-size: 8vw; }
+    h1 .highlight {
+      font-size: 12vw; }
+
+  p {
+    font-size: 3vw; } }
+@media (max-width: 480px) {
+  body {
+    margin: 0; }
+
+  h1 {
+    font-size: 10vw; }
+    h1 .highlight {
+      font-size: 18vw; }
+
+  p {
+    font-size: 4vw; } }
+/* Restaurant.html */
+/* Body Styles */
+.restaurant-body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+/* Navigation Styles */
+.restaurant-nav {
+  background: #000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 6vh;
+  display: flex;
+  /* Aligns nav items to full height */ }
+  .restaurant-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    /* Assurez-vous que ul prend toute la hauteur de la nav */ }
+  .restaurant-nav li {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centre le contenu horizontalement */
+    height: 100%;
+    /* Prendre toute la hauteur de la nav */ }
+  .restaurant-nav a {
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    /* Utilisez flex pour centrer le texte */
+    align-items: center;
+    /* Centre verticalement */
+    justify-content: center;
+    /* Centre horizontalement */
+    padding: 10px;
+    width: 100%;
+    height: 100%; }
+    .restaurant-nav a.active {
+      background: #fff;
+      color: #000; }
+
+/* Carousel Section Styles */
+.carousel-section {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  /* Ajuster la hauteur selon vos besoins */ }
+
+.swiper-container {
+  width: 100%;
+  height: 100%; }
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  /* Pour montrer une couleur de fond pendant le chargement des images */ }
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; }
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  z-index: 10; }
+
+/* Section Styles */
+.restaurant-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; }
+
+.restaurant-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+.restaurant-content {
+  z-index: 1;
+  text-align: center;
+  color: black;
+  padding: 10vh 40px;
+  background-color: #f5685d;
+  width: 100%; }
+
+.restaurant-title {
+  font-family: "JeanLuc Thin", Arial, sans-serif;
+  font-size: 9vw;
+  margin: 0;
+  margin-bottom: 0.5vw; }
+
+.restaurant-description {
+  font-family: "JeanLuc Thin", Arial, sans-serif;
+  font-size: 7vw;
+  margin: -10px; }
+
+.restaurant-image {
+  width: 80%;
+  height: auto;
+  margin-top: 20px; }
+
+.restaurant-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  /* Ajuster l'espacement entre les boutons */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 1000;
+  /* S'assurer qu'ils sont au-dessus des autres éléments */ }
+
+.restaurant-button {
+  padding: 20px 40px;
+  font-size: 2vw;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; }
+  .restaurant-button:hover {
+    background-color: white;
+    color: black; }
+
+@media (max-width: 768px) {
+  .restaurant-button {
+    font-size: 3vw;
+    padding: 15px 30px; }
+
+  .restaurant-buttons {
+    gap: 100px;
+    /* Réduire l'espacement entre les boutons */ } }
+@media (max-width: 480px) {
+  .restaurant-button {
+    font-size: 4vw;
+    padding: 10px 20px; }
+
+  .restaurant-buttons {
+    gap: 80px;
+    /* Réduire encore plus l'espacement entre les boutons */ } }
+/* Initial Restaurant Section */
+.restaurant-initial-content {
+  background-color: #23b388;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  height: 80vh; }
+  .restaurant-initial-content h1, .restaurant-initial-content h2, .restaurant-initial-content p {
+    margin: 10px 0; }
+  .restaurant-initial-content h1 {
+    font-size: 9vw;
+    font-family: "JeanLuc Thin", Arial, sans-serif; }
+  .restaurant-initial-content h2 {
+    font-size: 7vw;
+    font-family: "JeanLuc Thin", Arial, sans-serif; }
+  .restaurant-initial-content p {
+    font-size: 1.5vw;
+    font-family: "Apercu Mono", Arial, sans-serif; }
+
+/* Instagram Section */
+.instagram-section {
+  background-color: #000;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  color: white; }
+
+.instagram-title {
+  font-family: "JeanLuc Thin", Arial, sans-serif;
+  font-size: 2vw;
+  color: white;
+  margin-bottom: 20px; }
+
+.instagram-feed {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px; }
+
+.instagram-post {
+  width: calc(33% - 10px);
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-align: center; }
+
+.instagram-post img {
+  width: 100%;
+  height: auto; }
+
+@media (max-width: 768px) {
+  .restaurant-title {
+    font-size: 8vw; }
+
+  .restaurant-description {
+    font-size: 3vw; }
+
+  .restaurant-button {
+    font-size: 3vw; }
+
+  .restaurant-initial-content h1 {
+    font-size: 8vw; }
+
+  .restaurant-initial-content h2 {
+    font-size: 4vw; }
+
+  .restaurant-initial-content p {
+    font-size: 3vw; }
+
+  .instagram-title {
+    font-size: 4vw; }
+
+  .instagram-post {
+    width: calc(50% - 10px); } }
+@media (max-width: 480px) {
+  .restaurant-title {
+    font-size: 20vw; }
+
+  .restaurant-description {
+    font-size: 10vw; }
+
+  .restaurant-button {
+    font-size: 4vw; }
+
+  .restaurant-initial-content h1 {
+    font-size: 20vw; }
+
+  .restaurant-initial-content h2 {
+    font-size: 14vw; }
+
+  .restaurant-initial-content p {
+    font-size: 4vw; }
+
+  .instagram-title {
+    font-size: 6vw; }
+
+  .instagram-post {
+    width: 100%; } }
+/* Create a custom animation */
+@keyframes move-out {
+  from {
+    transform: translateY(0%); }
+  to {
+    transform: translateY(-100%); } }
+@keyframes move-in {
+  from {
+    transform: translateX(100%); }
+  to {
+    transform: translateX(0%); } }
+/* Apply the custom animation to the old and new page states */
+::view-transition-old(root) {
+  animation: 0.4s ease-in both move-out; }
+
+::view-transition-new(root) {
+  animation: 0.4s ease-in both move-in; }
+
+/*# sourceMappingURL=styles.css.map */
