@@ -25,8 +25,14 @@ function loadPage(url) {
         .then(html => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
+            
+            // Remplacer le contenu principal
             const newContent = doc.querySelector('#content').innerHTML;
             document.querySelector('#content').innerHTML = newContent;
+
+            // Appliquer la classe de corps appropriée
+            const newBodyClass = doc.querySelector('body').className;
+            document.body.className = newBodyClass;
 
             // Re-bind event listeners for new content
             document.querySelectorAll('.nav-link, .section-link').forEach(link => {

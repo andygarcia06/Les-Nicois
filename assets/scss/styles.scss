@@ -1,9 +1,7 @@
+/* Styles globaux */
 :root {
     view-transition-name: root;
-  }
-
-  
-  
+}
 
 @font-face {
     font-family: 'Apercu Mono';
@@ -21,15 +19,13 @@
 
 @view-transition {
     navigation: auto;
-  }
-  
+}
 
 $primary-color: #3498db;
 $primary-font: 'Apercu Mono', Arial, sans-serif;
 $title-font: 'JeanLuc Thin', Arial, sans-serif;
 $background-green: #23b388;
 $background-blue: #1531ec;
-
 
 html, body {
     margin: 0;
@@ -39,7 +35,6 @@ html, body {
 }
 
 body {
-    margin: 0 250px;
     font-family: $primary-font;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch; /* iOS overflow scrolling */
@@ -49,6 +44,11 @@ body {
 
 * {
     box-sizing: border-box;
+}
+
+/* Styles pour index.html */
+body.index-body {
+    margin: 0 250px;
 }
 
 .section-link {
@@ -122,7 +122,7 @@ p {
 }
 
 @media (max-width: 768px) {
-    body {
+    body.index-body {
         margin: 0;
     }
     h1 {
@@ -139,7 +139,7 @@ p {
 }
 
 @media (max-width: 480px) {
-    body {
+    body.index-body {
         margin: 0;
     }
     h1 {
@@ -155,10 +155,8 @@ p {
     }
 }
 
-/* Restaurant.html */
-
-/* Body Styles */
-.restaurant-body {
+/* Styles pour restaurant.html */
+body.restaurant-body {
     width: 100%;
     margin: 0;
     padding: 0;
@@ -215,7 +213,6 @@ p {
     position: relative;
     width: 100%;
     height: 50vh; /* Ajuster la hauteur selon vos besoins */
-
 }
 
 .swiper-container {
@@ -274,7 +271,6 @@ p {
     padding: 10vh 40px;
     background-color: #f5685d;
     width: 100%;
-
 }
 
 .restaurant-title {
@@ -477,9 +473,8 @@ p {
     }
 }
 
-// RADIO.HTML
-
-.radio-body {
+/* Styles pour radio.html */
+body.radio-body {
     width: 100%;
     margin: 0;
     padding: 0;
@@ -504,7 +499,7 @@ p {
     font-family: $title-font;
     cursor: grab;
 
-    span{
+    span {
         position: relative;
         bottom: 5vh;
         left: 0.2rem;
@@ -519,7 +514,7 @@ p {
 }
 
 .radio-title:hover,
-.radio-subtitle:hover{
+.radio-subtitle:hover {
     transform: scale(1.1);
 }
 
@@ -557,14 +552,12 @@ p {
     border: white;
 }
 
-.radio-button:hover{
+.radio-button:hover {
     background-color: $background-blue;
     border: white;
     color: white;
     transform: scale(1.2);
 }
-
-
 
 @media (max-width: 768px) {
     .radio-title {
@@ -598,37 +591,31 @@ p {
     }
 }
 
-// View transition
-
-/* Create a custom animation */
-
+/* View transition */
 @keyframes move-out {
     from {
-      transform: translateY(0%);
+        transform: translateY(0%);
     }
-  
+
     to {
-      transform: translateY(-100%);
+        transform: translateY(-100%);
     }
-  }
-  
-  @keyframes move-in {
+}
+
+@keyframes move-in {
     from {
-      transform: translateX(100%);
+        transform: translateX(100%);
     }
-  
+
     to {
-      transform: translateX(0%);
+        transform: translateX(0%);
     }
-  }
-  
-  /* Apply the custom animation to the old and new page states */
-  
-  ::view-transition-old(root) {
+}
+
+::view-transition-old(root) {
     animation: 0.4s ease-in both move-out;
-  }
-  
-  ::view-transition-new(root) {
+}
+
+::view-transition-new(root) {
     animation: 0.4s ease-in both move-in;
-  }
-  
+}

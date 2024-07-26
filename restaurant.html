@@ -9,13 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-
     <meta name="view-transition" content="same-origin"/>
-
 </head>
 <body class="restaurant-body">
     <div id="audio-container">
-        <audio autoplay id="radio-player" src="https://str0.creacast.com/purelectro2" preload="none"></audio>
+        <audio id="radio-player" src="https://str0.creacast.com/purelectro2" preload="none"></audio>
     </div>
     <div id="content" class="transition-content">
         <header>
@@ -35,9 +33,7 @@
                         <div class="swiper-slide"><img src="path/to/your/image2.jpg" alt="Slide 2"></div>
                         <div class="swiper-slide"><img src="path/to/your/image3.jpg" alt="Slide 3"></div>
                     </div>
-                    <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
-                    <!-- Add Navigation -->
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
@@ -77,8 +73,6 @@
                     </div>
                 </div>
             </section>
-            <audio id="radio-player" src="https://str0.creacast.com/purelectro2" preload="none" style="display:none;"></audio>
-
         </main>
     </div>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -96,7 +90,6 @@
                 prevEl: '.swiper-button-prev',
             },
         });
-
     </script>
 </body>
 </html>
