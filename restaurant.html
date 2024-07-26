@@ -14,6 +14,9 @@
 
 </head>
 <body class="restaurant-body">
+    <div id="audio-container">
+        <audio autoplay id="radio-player" src="https://str0.creacast.com/purelectro2" preload="none"></audio>
+    </div>
     <div id="content" class="transition-content">
         <header>
             <nav class="restaurant-nav">
@@ -74,9 +77,12 @@
                     </div>
                 </div>
             </section>
+            <audio id="radio-player" src="https://str0.creacast.com/purelectro2" preload="none" style="display:none;"></audio>
+
         </main>
     </div>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/features.js"></script>
     <script src="assets/js/transition.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
