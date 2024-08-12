@@ -62,7 +62,11 @@ body.index-body {
     text-align: center;
     padding: 20px;
     height: 25vh;
-    position: sticky;
+    position: sticky;  // Permet au header de rester collé en haut lors du défilement
+    top: 0;
+    background-color: white;  // Fond pour éviter le chevauchement avec le contenu
+    z-index: 1000;  // Assure que le header reste au-dessus des autres éléments lorsqu'il devient sticky
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 .index-logo {
