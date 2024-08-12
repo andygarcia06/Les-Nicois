@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
             { opacity: 0 }, 
             { 
                 opacity: 1, 
-                duration: 3, // Durée de l'animation en secondes
+                duration: 0.5, // Durée de l'animation en secondes
                 scrollTrigger: {
                     trigger: id,
                     start: "top 80%",

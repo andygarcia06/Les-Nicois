@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Niçois - Carte</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <meta name="view-transition" content="same-origin"/>
+</head>
+<body class="carte-body">
+    <div id="audio-container">
+        <audio id="radio-player" src="https://str0.creacast.com/purelectro2" preload="none"></audio>
+    </div>
+    <header>
+        <nav class="restaurant-nav">
+            <ul>
+                <li><a href="restaurant.html" class="active">Resto</a></li>
+                <li><a href="shop.html">Le shop</a></li>
+                <li><a href="radio.html">Radio transat</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="carte-content">
+        <section class="carte-section carte-boissons">
+            <div class="title-container">
+                <h1 class="title">LES <span class="highlight">NICOIS</span></h1>
+                <p class="sub-title">Restaurant, bar, pétanque</p>
+            </div>
+            <div class="carte-list">
+                <h2>Apéritifs</h2>
+                <ul>
+                    <li>Ricard .................................... 2,5€</li>
+                    <li>Mauresque / Tomate / Perroquet ............. 5€</li>
+                    <li>Lillet ou Suze Tonic ....................... 6€</li>
+                    <li>Vermouth .................................... 6€</li>
+                    <li>José on the rocks .......................... 6€</li>
+                    <li>La triplette à Jess ......................... 8€</li>
+                    <li>Spritz ...................................... 8€</li>
+                </ul>
+
+                <h2>Cocktails</h2>
+                <ul>
+                    <li>Le Niçois ................................... 8€</li>
+                    <li>Mojito ...................................... 8€</li>
+                    <li>Frozen Margarita ............................ 8€</li>
+                    <li>Le Riviera .................................. 8€</li>
+                    <li>La flamme ................................... 8€</li>
+                </ul>
+
+                <h2>Bières</h2>
+                <ul>
+                    <li>Peroni 25cl / 50cl ......................... 3€ / 5€</li>
+                    <li>Upside Down Harry IPA 75cl / 50cl ........... 5€ / 8€</li>
+                    <li>Pietra 33cl ................................ 6€</li>
+                    <li>Colomba 33cl ............................... 6€</li>
+                    <li>Corona 33cl ................................ 6€</li>
+                </ul>
+
+                <h2>Softs</h2>
+                <ul>
+                    <li>Eau d'ananas ................................ 4€</li>
+                    <li>Mentonade ................................... 4€</li>
+                    <li>Coca, Coca zéro ............................ 3€</li>
+                    <li>Badoit 50cl, Evian 50cl .................... 3€</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="carte-section carte-vins">
+            <h2 class="carte-subtitle">Carte des Vins</h2>
+            <div class="carte-list">
+                <h3>Blancs</h3>
+                <ul>
+                    <li>"Vin Blanc" ................................ 20€</li>
+                    <li>"Vin Blanc 2" .............................. 25€</li>
+                </ul>
+
+                <h3>Rouges</h3>
+                <ul>
+                    <li>"Vin Rouge" ............................... 22€</li>
+                    <li>"Vin Rouge 2" .............................. 28€</li>
+                </ul>
+
+                <h3>Rosés</h3>
+                <ul>
+                    <li>"Vin Rosé" ................................ 18€</li>
+                    <li>"Vin Rosé 2" ............................... 24€</li>
+                </ul>
+
+                <h3>Oranges</h3>
+                <ul>
+                    <li>"Vin Orange" .............................. 26€</li>
+                </ul>
+
+                <h3>Bulles</h3>
+                <ul>
+                    <li>"Champagne" ............................... 35€</li>
+                </ul>
+            </div>
+        </section>
+        <section class="carte-section carte-commande">
+            <h2>BON DE COMMANDE</h2>
+        </section>
+
+        <button onclick="window.history.back()" class="carte-back-button">← retour</button>
+    </main>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/features.js"></script>
+    <script src="assets/js/transition.js"></script>
+</body>
+</html>

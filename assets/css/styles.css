@@ -34,97 +34,93 @@ body {
 * {
   box-sizing: border-box; }
 
+a {
+  text-decoration: none; }
+
 /* Styles pour index.html */
 body.index-body {
-  margin: 0 250px; }
+  font-family: 'Apercu Mono', Arial, sans-serif;
+  margin: 0;
+  padding: 0; }
+
+.index-header {
+  text-align: center;
+  padding: 20px;
+  height: 25vh; }
+
+.index-logo {
+  font-family: 'JeanLuc Thin', Arial, sans-serif;
+  font-size: 4rem;
+  position: relative;
+  top: -110px; }
+  .index-logo .highlight {
+    font-weight: bold;
+    font-size: 10rem;
+    position: relative;
+    top: 60px; }
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 33.33vh;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in-out; }
+  .section .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: black;
+    font-size: 2rem;
+    opacity: 0 !important;
+    transition: opacity 0.5s ease-in-out; }
+  .section:hover .overlay {
+    transform: translateX(0); }
+  .section:hover .content {
+    opacity: 1 !important; }
+  .section:not(:hover) .overlay {
+    transform: translateX(100%); }
+  .section:not(:hover) .content {
+    opacity: 0; }
 
 .section-link {
   text-decoration: none;
   display: block; }
 
-.section {
-  position: relative;
-  width: 100%;
-  height: 40vh;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  /* Assurez-vous que le contenu débordant est masqué */
-  transition: transform 0.4s ease;
-  /* Ajout de la transition pour le zoom arrière du background */ }
-
-#section-1 {
-  background-image: url("../img/background/section1.jpg");
-  /* Chemin de l'image 1 */ }
-
-#section-2 {
-  background-image: url("../img/background/section2.jpg");
-  /* Chemin de l'image 2 */ }
-
-#section-3 {
-  background-image: url("../img/background/section3.jpg");
-  /* Chemin de l'image 3 */ }
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.25); }
-
-.content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: black;
-  transition: transform 0.4s ease;
-  /* Ajout de la transition pour hover et retour */ }
-  .content.right-aligned {
-    text-align: right;
-    padding-right: 20px;
-    /* Ajuster selon vos préférences */ }
-
-h1 {
-  font-family: "JeanLuc Thin", Arial, sans-serif;
-  font-size: 3vw;
-  margin: 0;
-  margin-bottom: 0.5vw;
-  /* Ajuster la marge entre h1 et p */ }
-  h1 .highlight {
-    font-weight: bold;
-    font-size: 6vw; }
-
-p {
-  font-family: "Apercu Mono", Arial, sans-serif;
-  font-size: 1vw;
-  margin: -10px; }
-
 @media (max-width: 768px) {
-  body.index-body {
-    margin: 0; }
+  .index-header {
+    padding: 15px;
+    height: 20vh; }
 
-  h1 {
-    font-size: 8vw; }
-    h1 .highlight {
-      font-size: 12vw; }
-
-  p {
-    font-size: 3vw; } }
+  .index-logo {
+    font-size: 3rem;
+    top: -80px; }
+    .index-logo .highlight {
+      font-size: 7rem;
+      top: 40px; } }
 @media (max-width: 480px) {
-  body.index-body {
-    margin: 0; }
+  .index-header {
+    padding: 10px;
+    height: 15vh; }
 
-  h1 {
-    font-size: 10vw; }
-    h1 .highlight {
-      font-size: 18vw; }
-
-  p {
-    font-size: 4vw; } }
+  .index-logo {
+    font-size: 2.5rem;
+    top: -60px; }
+    .index-logo .highlight {
+      font-size: 5rem;
+      top: 30px; } }
 /* Styles pour restaurant.html */
 body.restaurant-body {
   width: 100%;
@@ -274,6 +270,10 @@ body.restaurant-body {
   .restaurant-button:hover {
     background-color: white;
     color: black; }
+  .restaurant-button a {
+    color: #fff; }
+  .restaurant-button a:hover {
+    color: #000; }
 
 @media (max-width: 768px) {
   .restaurant-button {
@@ -301,15 +301,9 @@ body.restaurant-body {
   height: 80vh; }
   .restaurant-initial-content h1, .restaurant-initial-content h2, .restaurant-initial-content p {
     margin: 10px 0; }
-  .restaurant-initial-content h1 {
-    font-size: 9vw;
-    font-family: "JeanLuc Thin", Arial, sans-serif; }
   .restaurant-initial-content h2 {
     font-size: 7vw;
     font-family: "JeanLuc Thin", Arial, sans-serif; }
-  .restaurant-initial-content p {
-    font-size: 1.5vw;
-    font-family: "Apercu Mono", Arial, sans-serif; }
 
 /* Instagram Section */
 .instagram-section {
@@ -512,5 +506,388 @@ body.radio-body {
 
 ::view-transition-new(root) {
   animation: 0.4s ease-in both move-in; }
+
+body.reservation-body {
+  background-color: #bb59c4;
+  font-family: "Apercu Mono", Arial, sans-serif;
+  color: #fff;
+  overflow: hidden; }
+
+.reservation-section {
+  background-color: #bb59c4;
+  text-align: center;
+  padding: 140px;
+  border-radius: 15px; }
+  @media (max-width: 768px) {
+    .reservation-section {
+      padding: 100px 20px; } }
+  @media (max-width: 480px) {
+    .reservation-section {
+      padding: 80px 10px; } }
+
+.title-container {
+  width: 100%;
+  text-align: center; }
+
+.reservation-section {
+  margin-top: -100px !important; }
+
+.title {
+  font-family: "JeanLuc Thin", Arial, sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  position: relative;
+  bottom: 30px; }
+  .title .highlight {
+    font-weight: bold;
+    font-size: 7rem;
+    position: relative;
+    top: 45px; }
+    @media (max-width: 768px) {
+      .title .highlight {
+        font-size: 5rem;
+        top: 35px; } }
+    @media (max-width: 480px) {
+      .title .highlight {
+        font-size: 6rem;
+        top: 25px; } }
+  @media (max-width: 768px) {
+    .title {
+      font-size: 5rem;
+      bottom: 20px; } }
+  @media (max-width: 480px) {
+    .title {
+      font-size: 1.5rem;
+      bottom: 10px; } }
+
+.title, .sub-title {
+  color: black; }
+
+.reservation-form-container {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  height: 60vh;
+  margin: 20px 100px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+  @media (max-width: 768px) {
+    .reservation-form-container {
+      margin: 20px 50px;
+      height: auto; } }
+  @media (max-width: 480px) {
+    .reservation-form-container {
+      margin: 20px 20px;
+      padding: 15px; } }
+
+.reservation-form h2 {
+  font-family: "JeanLuc Thin", Arial, sans-serif;
+  color: #000; }
+  @media (max-width: 768px) {
+    .reservation-form h2 {
+      font-size: 1.5rem; } }
+  @media (max-width: 480px) {
+    .reservation-form h2 {
+      font-size: 1.2rem; } }
+
+.reservation-form p {
+  font-family: "Apercu Mono", Arial, sans-serif;
+  color: #000; }
+  @media (max-width: 768px) {
+    .reservation-form p {
+      font-size: 1rem; } }
+  @media (max-width: 480px) {
+    .reservation-form p {
+      font-size: 0.8rem; } }
+
+.form-group {
+  margin-top: 45px;
+  margin-bottom: 15px;
+  position: relative; }
+  @media (max-width: 768px) {
+    .form-group {
+      margin-top: 30px; } }
+  @media (max-width: 480px) {
+    .form-group {
+      margin-top: 20px; } }
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-family: "JeanLuc Thin", Arial, sans-serif;
+  color: #000; }
+  @media (max-width: 768px) {
+    label {
+      font-size: 1rem; } }
+  @media (max-width: 480px) {
+    label {
+      font-size: 0.8rem; } }
+
+select {
+  width: 100%;
+  padding: 10px 5px;
+  font-family: "Apercu Mono", Arial, sans-serif;
+  font-size: 1rem;
+  color: #000;
+  background-color: transparent;
+  /* Fond transparent */
+  border: none;
+  border-bottom: 2px solid #000;
+  /* Ligne du bas uniquement */
+  border-radius: 0;
+  /* Supprimer les coins arrondis */
+  appearance: none;
+  /* Supprime le style par défaut */
+  -webkit-appearance: none;
+  /* Pour Safari */
+  -moz-appearance: none;
+  /* Pour Firefox */
+  background-image: none;
+  /* Supprimer l'image de la flèche par défaut */ }
+  select:focus {
+    outline: none;
+    border-bottom-color: black; }
+  select:hover {
+    border-bottom-color: #1a1a1a; }
+  @media (max-width: 768px) {
+    select {
+      font-size: 0.9rem;
+      padding: 8px 4px; } }
+  @media (max-width: 480px) {
+    select {
+      font-size: 0.8rem;
+      padding: 6px 3px; } }
+
+.form-group::after {
+  content: '▼';
+  font-size: 0.75rem;
+  color: #000;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; }
+  @media (max-width: 768px) {
+    .form-group::after {
+      font-size: 0.6rem;
+      right: 8px; } }
+  @media (max-width: 480px) {
+    .form-group::after {
+      font-size: 0.5rem;
+      right: 5px; } }
+
+.reservation-button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  font-family: "JeanLuc Thin", Arial, sans-serif; }
+  .reservation-button:hover {
+    background-color: #1a1a1a; }
+  @media (max-width: 768px) {
+    .reservation-button {
+      padding: 12px;
+      font-size: 0.9rem; } }
+  @media (max-width: 480px) {
+    .reservation-button {
+      padding: 10px;
+      font-size: 0.8rem; } }
+
+.reservation-back-button-container {
+  margin: auto;
+  text-align: center; }
+
+.reservation-back-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  font-family: "JeanLuc Thin", Arial, sans-serif;
+  width: 12%;
+  height: 4vh; }
+  .reservation-back-button:hover {
+    background-color: #1a1a1a; }
+  @media (max-width: 768px) {
+    .reservation-back-button {
+      width: 20%;
+      height: 5vh; } }
+  @media (max-width: 480px) {
+    .reservation-back-button {
+      width: 30%;
+      height: 6vh; } }
+
+body.carte-body {
+  font-family: "Apercu Mono", Arial, sans-serif;
+  color: #000;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth; }
+
+.carte-content {
+  padding: 0;
+  /* Suppression du padding latéral */ }
+
+.carte-section {
+  padding: 40px 20px;
+  border-radius: 15px; }
+  .carte-section.carte-boissons {
+    background-color: #ffd700; }
+  .carte-section.carte-vins {
+    background-color: #87ceeb; }
+  .carte-section.carte-commande {
+    background-color: #ff69b4;
+    text-align: center;
+    padding: 80px 20px;
+    /* Centrer le texte et ajuster le padding */ }
+  .carte-section .carte-title {
+    font-family: "JeanLuc Thin", Arial, sans-serif;
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 20px; }
+  .carte-section .carte-subtitle {
+    font-family: "JeanLuc Thin", Arial, sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000; }
+  .carte-section .carte-list {
+    font-family: "Apercu Mono", Arial, sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 20px; }
+    .carte-section .carte-list h2, .carte-section .carte-list h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #000; }
+    .carte-section .carte-list ul {
+      list-style-type: none;
+      padding: 0; }
+      .carte-section .carte-list ul li {
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        border-bottom: 1px solid #000; }
+
+.carte-back-button {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  font-family: "JeanLuc Thin", Arial, sans-serif;
+  cursor: pointer;
+  text-align: center;
+  width: 150px; }
+  .carte-back-button:hover {
+    background-color: #1a1a1a; }
+
+@media (max-width: 768px) {
+  .carte-section {
+    padding: 20px 10px; }
+
+  .carte-title {
+    font-size: 3rem; }
+
+  .carte-subtitle {
+    font-size: 2.5rem; }
+
+  .carte-list {
+    font-size: 1.2rem; }
+    .carte-list h2, .carte-list h3 {
+      font-size: 1.8rem; }
+
+  .carte-back-button {
+    width: 120px;
+    padding: 8px 16px; } }
+@media (max-width: 480px) {
+  .carte-section {
+    padding: 15px 5px; }
+
+  .carte-title {
+    font-size: 2.5rem; }
+
+  .carte-subtitle {
+    font-size: 2rem; }
+
+  .carte-list {
+    font-size: 1rem; }
+    .carte-list h2, .carte-list h3 {
+      font-size: 1.5rem; }
+
+  .carte-back-button {
+    width: 100px;
+    padding: 6px 12px; } }
+body.shop-body {
+  font-family: "Apercu Mono", Arial, sans-serif;
+  color: #000;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth; }
+
+.shop-content {
+  text-align: center;
+  margin-top: 20vh; }
+
+.shop-section {
+  margin-bottom: 40px; }
+  .shop-section .shop-item {
+    margin-bottom: 30px;
+    height: 30vh; }
+    .shop-section .shop-item .shop-item-image {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+      display: block; }
+    .shop-section .shop-item .shop-item-description {
+      font-family: "Apercu Mono", Arial, sans-serif;
+      font-size: 1rem;
+      margin-top: 10px; }
+
+.shop-cart-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #000;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; }
+  .shop-cart-button img {
+    width: 70%;
+    height: auto; }
+  .shop-cart-button:hover {
+    background-color: #1a1a1a; }
+
+@media (max-width: 768px) {
+  .shop-title {
+    font-size: 2rem; }
+
+  .shop-item-image {
+    max-width: 250px; }
+
+  .shop-cart-button {
+    width: 45px;
+    height: 45px; } }
+@media (max-width: 480px) {
+  .shop-title {
+    font-size: 1.5rem; }
+
+  .shop-item-image {
+    max-width: 200px; }
+
+  .shop-cart-button {
+    width: 40px;
+    height: 40px; } }
 
 /*# sourceMappingURL=styles.css.map */

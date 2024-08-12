@@ -7,46 +7,40 @@
     <title>Les Niçois</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-
     <meta name="view-transition" content="same-origin"/>
 </head>
 <body class="index-body">
-    <div id="audio-container">
-        <audio id="radio-player" src="https://str0.creacast.com/purelectro2" preload="none"></audio>
-    </div>
     <div id="content" data-barba="container" data-barba-namespace="index">
+        <header class="index-header">
+            <h1 class="index-logo">LES <span class="highlight">NICOIS</span></h1>
+        </header>
         <a href="./restaurant.html" class="section-link">
-            <section id="section-1" class="section">
+            <section id="section-1" class="section" style="background-image: url('./assets/img/background/section1.jpg');">
                 <div class="overlay"></div>
                 <div class="content">
-                    <h1>LES <span class="highlight">NICOIS</span></h1>
                     <p>Restaurant, bar, pétanque</p>
                 </div>
             </section>
         </a>
-        <a href="link2.html" class="section-link">
-            <section id="section-2" class="section">
+        <a href="shop.html" class="section-link">
+            <section id="section-2" class="section" style="background-image: url('./assets/img/background/section2.jpg');">
                 <div class="overlay"></div>
-                <div class="content right-aligned">
-                    <h1>LES <span class="highlight">NICOIS</span></h1>
+                <div class="content">
                     <p>Le shop</p>
                 </div>
             </section>
         </a>
-        <a href="link3.html" class="section-link">
-            <section id="section-3" class="section">
+        <a href="radio.html" class="section-link">
+            <section id="section-3" class="section" style="background-image: url('./assets/img/background/section3.jpg');">
                 <div class="overlay"></div>
-                <div class="content right-aligned">
-                    <h1>LES <span class="highlight">NICOIS</span></h1>
+                <div class="content">
                     <p>Radio transat</p>
                 </div>
             </section>
         </a>
     </div>
-
     <script src="assets/js/animation.js"></script>
     <script src="assets/js/transition.js"></script>
     <script src="assets/js/features.js"></script>
