@@ -56,12 +56,13 @@ body.index-body {
     font-family: 'Apercu Mono', Arial, sans-serif;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .index-header {
     text-align: center;
     padding: 20px;
-    height: 25vh;
+    height: 24vh;
     position: sticky;  // Permet au header de rester collé en haut lors du défilement
     top: 0;
     background-color: white;  // Fond pour éviter le chevauchement avec le contenu
@@ -86,7 +87,7 @@ body.index-body {
 .section {
     position: relative;
     width: 100%;
-    height: 50vh; // Divise l'écran en trois parties égales
+    height: 30vh; // Divise l'écran en trois parties égales
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -100,7 +101,7 @@ body.index-body {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 0.93);
         transform: translateX(-100%);
         transition: transform 0.8s ease-in-out;
     }
@@ -341,7 +342,7 @@ body.restaurant-body {
     left: 0;
     width: 100%;
     padding: 10px 0;
-    z-index: 1000; /* S'assurer qu'ils sont au-dessus des autres éléments */
+    z-index: 1000; 
 }
 
 .restaurant-button {
@@ -352,6 +353,8 @@ body.restaurant-body {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    border-radius: 5px;
+    font-family: 'Apercu Mono';
 
     &:hover {
         background-color: white;

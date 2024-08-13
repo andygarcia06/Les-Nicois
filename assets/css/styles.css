@@ -41,12 +41,13 @@ a {
 body.index-body {
   font-family: 'Apercu Mono', Arial, sans-serif;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  overflow: hidden; }
 
 .index-header {
   text-align: center;
   padding: 20px;
-  height: 25vh;
+  height: 24vh;
   position: sticky;
   top: 0;
   background-color: white;
@@ -67,7 +68,7 @@ body.index-body {
 .section {
   position: relative;
   width: 100%;
-  height: 50vh;
+  height: 30vh;
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -80,7 +81,7 @@ body.index-body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.93);
     transform: translateX(-100%);
     transition: transform 0.8s ease-in-out; }
   .section .content {
@@ -275,8 +276,7 @@ body.restaurant-body {
   left: 0;
   width: 100%;
   padding: 10px 0;
-  z-index: 1000;
-  /* S'assurer qu'ils sont au-dessus des autres éléments */ }
+  z-index: 1000; }
 
 .restaurant-button {
   padding: 20px 40px;
@@ -285,7 +285,9 @@ body.restaurant-body {
   color: #fff;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease; }
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  font-family: 'Apercu Mono'; }
   .restaurant-button:hover {
     background-color: white;
     color: black; }
