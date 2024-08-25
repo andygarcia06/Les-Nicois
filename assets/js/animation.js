@@ -20,3 +20,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 });
+
+
+window.addEventListener('load', () => {
+    // Attendre que le reste du contenu soit chargé
+    setTimeout(() => {
+        const timeline = gsap.timeline();
+
+        // Réduire le logo et diminuer l'opacité du fond
+        timeline.to("#preloader .title-container", {
+            scale: 0,
+            duration: 2,
+            ease: "power2.inOut"
+        }).to("#preloader", {
+            opacity: 0,
+            duration: 1,
+            ease: "power2.inOut",
+            onComplete: () => {
+                // Supprimer le préchargeur du DOM
+                document.getElementById("preloader").style.display = "none";
+            }
+        }, "+0.4");
+    }, 3000); // Démarre l'animation après 3 secondes
+});

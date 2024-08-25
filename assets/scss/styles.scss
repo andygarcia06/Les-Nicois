@@ -26,7 +26,9 @@ $primary-font: 'Apercu Mono', Arial, sans-serif;
 $title-font: 'JeanLuc Thin', Arial, sans-serif;
 $background-green: #23b388;
 $background-blue: #1531ec;
-
+$carte-yellow-background: #ffd700;
+$carte-blue-background: #87ceeb;
+$carte-pink-background: #ff69b4;
 html, body {
     margin: 0;
     padding: 0;
@@ -49,8 +51,26 @@ body {
 a{
     text-decoration: none;
 }
+// Prealoader
 
-/* Styles pour index.html */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $carte-yellow-background;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Assurez-vous qu'il est au-dessus de tout */
+    opacity: 1;
+}
+
+#preloader .title-container {
+    transform: scale(2);
+}
+
 // Styles pour index.html
 body.index-body {
     font-family: 'Apercu Mono', Arial, sans-serif;
@@ -61,26 +81,28 @@ body.index-body {
 
 .index-header {
     text-align: center;
-    padding: 20px;
-    height: 24vh;
+    padding: 10px;
+    height: 6vh !important;
     position: sticky;  // Permet au header de rester collé en haut lors du défilement
     top: 0;
     background-color: white;  // Fond pour éviter le chevauchement avec le contenu
     z-index: 1000;  // Assure que le header reste au-dessus des autres éléments lorsqu'il devient sticky
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 .index-logo {
     font-family: 'JeanLuc Thin', Arial, sans-serif;
     font-size: 4rem;
     position: relative;
-    top: -110px;
+    top: -50px !important;
+    color: black;
+    transform: scale(0.3);
 
     .highlight {
         font-weight: bold;
         font-size: 10rem;
         position: relative;
-        top: 60px;
+        top: 40px !important;
     }
 }
 
@@ -938,158 +960,6 @@ select {
     }
 }
 
-// carte.html
-$carte-yellow-background: #ffd700;
-$carte-blue-background: #87ceeb;
-$carte-pink-background: #ff69b4;
-$carte-text-color: #000;
-$carte-title-font: 'JeanLuc Thin', Arial, sans-serif;
-$carte-content-font: 'Apercu Mono', Arial, sans-serif;
-
-body.carte-body {
-    font-family: $primary-font;
-    color: $carte-text-color;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-}
-
-.carte-content {
-    padding: 0; /* Suppression du padding latéral */
-}
-
-.carte-section {
-    padding: 40px 20px;
-    border-radius: 15px;
-
-    &.carte-boissons {
-        background-color: $carte-yellow-background;
-    }
-
-    &.carte-vins {
-        background-color: $carte-blue-background;
-    }
-
-    &.carte-commande {
-        background-color: $carte-pink-background;
-        text-align: center;
-        padding: 80px 20px; /* Centrer le texte et ajuster le padding */
-    }
-
-    .carte-title {
-        font-family: $carte-title-font;
-        font-size: 4rem;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .carte-subtitle {
-        font-family: $carte-title-font;
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 20px;
-        color: $carte-text-color;
-    }
-
-    .carte-list {
-        font-family: $carte-content-font;
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-
-        h2, h3 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: $carte-text-color;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-
-            li {
-                margin-bottom: 5px;
-                display: flex;
-                justify-content: space-between;
-                padding: 5px 0;
-                border-bottom: 1px solid $carte-text-color;
-            }
-        }
-    }
-}
-
-.carte-back-button {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    background-color: $carte-text-color;
-    color: #fff;
-    border: none;
-    font-family: $title-font;
-    cursor: pointer;
-    text-align: center;
-    width: 150px;
-
-    &:hover {
-        background-color: lighten($carte-text-color, 10%);
-    }
-}
-
-@media (max-width: 768px) {
-    .carte-section {
-        padding: 20px 10px;
-    }
-
-    .carte-title {
-        font-size: 3rem;
-    }
-
-    .carte-subtitle {
-        font-size: 2.5rem;
-    }
-
-    .carte-list {
-        font-size: 1.2rem;
-
-        h2, h3 {
-            font-size: 1.8rem;
-        }
-    }
-
-    .carte-back-button {
-        width: 120px;
-        padding: 8px 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .carte-section {
-        padding: 15px 5px;
-    }
-
-    .carte-title {
-        font-size: 2.5rem;
-    }
-
-    .carte-subtitle {
-        font-size: 2rem;
-    }
-
-    .carte-list {
-        font-size: 1rem;
-
-        h2, h3 {
-            font-size: 1.5rem;
-        }
-    }
-
-    .carte-back-button {
-        width: 100px;
-        padding: 6px 12px;
-    }
-}
-
 
 // shop.html
 body.shop-body {
@@ -1182,4 +1052,260 @@ body.shop-body {
     }
 }
 
+// POPUP
 
+.popup {
+    display: none; /* Masqué par défaut */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    // overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Fond sombre */
+}
+
+.popup-content {
+    background-color: rgba(0, 0, 0, 0);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    height: 100%;
+    border: none;
+    z-index: 2000;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+}
+
+.close-popup {
+    color: white;
+    float: right;
+    font-size: 38px;
+    font-weight: bold;
+
+    &:hover,
+    &:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+}
+
+.swiper-controller {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    &.swiper-button-prev {
+        left: -40px; /* Ajuste cette valeur pour déplacer la flèche vers l'extérieur */
+    }
+
+    &.swiper-button-next {
+        right: -40px; /* Ajuste cette valeur pour déplacer la flèche vers l'extérieur */
+    }
+}
+
+// Carte.html
+
+.body-cart .swiper-container {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    // overflow-y: scroll;
+}
+
+.body-cart .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 0 80px;
+    overflow: scroll;
+
+    @media (max-width: 768px) {
+        padding: 0 40px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 0 20px;
+    }
+}
+
+
+.menu-title,
+.boissons-title,
+.vins-title {
+    font-size: 5rem !important;
+    margin-bottom: -5px;
+    text-align: left !important;
+    width: 100%;
+    font-weight: bold;
+    font-family: 'JeanLuc Thin';
+
+    @media (max-width: 768px) {
+        font-size: 2.5rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 1.5rem;
+    }
+}
+
+.vins-title {
+    line-height: 65px;
+}
+
+
+.swiper-slide h3 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: 'JeanLuc Thin';
+    width: 100%;
+
+    @media (max-width: 768px) {
+        font-size: 1.8rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 1.4rem;
+    }
+}
+
+.menu-subtitle,
+.boissons-subtitle,
+.vins-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    display: flex;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        font-size: 0.7rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 0.6rem;
+    }
+}
+
+.menu-item,
+.boissons-item,
+.vins-item {
+    font-size: 0.8rem;
+    margin-bottom: 3px;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+
+    @media (max-width: 768px) {
+        font-size: 0.7rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 0.6rem;
+    }
+}
+
+#swip-1 {
+    background-color: $carte-pink-background;
+    overflow: hidden;
+}
+
+#swip-2 {
+    background-color: $carte-yellow-background;
+    height: 110vh !important;
+
+    @media (max-width: 768px) {
+        height: auto;
+    }
+
+    @media (max-width: 480px) {
+        height: auto;
+    }
+}
+
+#swip-3 {
+    background-color: $carte-blue-background;
+    height: 120vh !important;
+
+    @media (max-width: 768px) {
+        height: auto;
+    }
+
+    @media (max-width: 480px) {
+        height: auto;
+    }
+}
+
+.mini-title {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+
+    .mini-title-h1 {
+        font-family: $title-font;
+        font-size: 1rem !important;
+
+        .mini-highlight {
+            font-size: 3rem;
+            position: relative;
+            top: 20px;
+        }
+    }
+
+    .mini-sub-title {
+        font-size: 50%;
+    }
+}
+
+.price {
+    margin-left: auto;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+
+    .popup-content {
+        width: 100%;
+    }
+    .swiper-container {
+        width: 80%;
+    }
+
+    .swiper-slide {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .popup-content {
+        width: 100%;
+    }
+    .swiper-container {
+        width: 90% !important;
+        margin: auto; /* Le swiper prend 90% de la largeur en mobile */
+    }
+
+    .swiper-slide {
+        padding: 0 20px;
+    }
+}

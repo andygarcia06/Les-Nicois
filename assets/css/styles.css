@@ -37,7 +37,23 @@ body {
 a {
   text-decoration: none; }
 
-/* Styles pour index.html */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffd700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  /* Assurez-vous qu'il est au-dessus de tout */
+  opacity: 1; }
+
+#preloader .title-container {
+  transform: scale(2); }
+
 body.index-body {
   font-family: 'Apercu Mono', Arial, sans-serif;
   margin: 0;
@@ -46,24 +62,25 @@ body.index-body {
 
 .index-header {
   text-align: center;
-  padding: 20px;
-  height: 24vh;
+  padding: 10px;
+  height: 6vh !important;
   position: sticky;
   top: 0;
   background-color: white;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+  z-index: 1000; }
 
 .index-logo {
   font-family: 'JeanLuc Thin', Arial, sans-serif;
   font-size: 4rem;
   position: relative;
-  top: -110px; }
+  top: -50px !important;
+  color: black;
+  transform: scale(0.3); }
   .index-logo .highlight {
     font-weight: bold;
     font-size: 10rem;
     position: relative;
-    top: 60px; }
+    top: 40px !important; }
 
 .section {
   position: relative;
@@ -741,110 +758,6 @@ select {
       width: 30%;
       height: 6vh; } }
 
-body.carte-body {
-  font-family: "Apercu Mono", Arial, sans-serif;
-  color: #000;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth; }
-
-.carte-content {
-  padding: 0;
-  /* Suppression du padding latéral */ }
-
-.carte-section {
-  padding: 40px 20px;
-  border-radius: 15px; }
-  .carte-section.carte-boissons {
-    background-color: #ffd700; }
-  .carte-section.carte-vins {
-    background-color: #87ceeb; }
-  .carte-section.carte-commande {
-    background-color: #ff69b4;
-    text-align: center;
-    padding: 80px 20px;
-    /* Centrer le texte et ajuster le padding */ }
-  .carte-section .carte-title {
-    font-family: "JeanLuc Thin", Arial, sans-serif;
-    font-size: 4rem;
-    text-align: center;
-    margin-bottom: 20px; }
-  .carte-section .carte-subtitle {
-    font-family: "JeanLuc Thin", Arial, sans-serif;
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #000; }
-  .carte-section .carte-list {
-    font-family: "Apercu Mono", Arial, sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 20px; }
-    .carte-section .carte-list h2, .carte-section .carte-list h3 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #000; }
-    .carte-section .carte-list ul {
-      list-style-type: none;
-      padding: 0; }
-      .carte-section .carte-list ul li {
-        margin-bottom: 5px;
-        display: flex;
-        justify-content: space-between;
-        padding: 5px 0;
-        border-bottom: 1px solid #000; }
-
-.carte-back-button {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 20px;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  font-family: "JeanLuc Thin", Arial, sans-serif;
-  cursor: pointer;
-  text-align: center;
-  width: 150px; }
-  .carte-back-button:hover {
-    background-color: #1a1a1a; }
-
-@media (max-width: 768px) {
-  .carte-section {
-    padding: 20px 10px; }
-
-  .carte-title {
-    font-size: 3rem; }
-
-  .carte-subtitle {
-    font-size: 2.5rem; }
-
-  .carte-list {
-    font-size: 1.2rem; }
-    .carte-list h2, .carte-list h3 {
-      font-size: 1.8rem; }
-
-  .carte-back-button {
-    width: 120px;
-    padding: 8px 16px; } }
-@media (max-width: 480px) {
-  .carte-section {
-    padding: 15px 5px; }
-
-  .carte-title {
-    font-size: 2.5rem; }
-
-  .carte-subtitle {
-    font-size: 2rem; }
-
-  .carte-list {
-    font-size: 1rem; }
-    .carte-list h2, .carte-list h3 {
-      font-size: 1.5rem; }
-
-  .carte-back-button {
-    width: 100px;
-    padding: 6px 12px; } }
 body.shop-body {
   font-family: "Apercu Mono", Arial, sans-serif;
   color: #000;
@@ -910,5 +823,216 @@ body.shop-body {
   .shop-cart-button {
     width: 40px;
     height: 40px; } }
+.popup {
+  display: none;
+  /* Masqué par défaut */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Fond sombre */ }
+
+.popup-content {
+  background-color: rgba(0, 0, 0, 0);
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  height: 100%;
+  border: none;
+  z-index: 2000; }
+  .popup-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none; }
+
+.close-popup {
+  color: white;
+  float: right;
+  font-size: 38px;
+  font-weight: bold; }
+  .close-popup:hover, .close-popup:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer; }
+
+.swiper-controller {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.swiper-button-prev, .swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10; }
+  .swiper-button-prev.swiper-button-prev, .swiper-button-next.swiper-button-prev {
+    left: -40px;
+    /* Ajuste cette valeur pour déplacer la flèche vers l'extérieur */ }
+  .swiper-button-prev.swiper-button-next, .swiper-button-next.swiper-button-next {
+    right: -40px;
+    /* Ajuste cette valeur pour déplacer la flèche vers l'extérieur */ }
+
+.body-cart .swiper-container {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0); }
+
+.body-cart .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: white;
+  padding: 0 80px;
+  overflow: scroll; }
+  @media (max-width: 768px) {
+    .body-cart .swiper-slide {
+      padding: 0 40px; } }
+  @media (max-width: 480px) {
+    .body-cart .swiper-slide {
+      padding: 0 20px; } }
+
+.menu-title,
+.boissons-title,
+.vins-title {
+  font-size: 5rem !important;
+  margin-bottom: -5px;
+  text-align: left !important;
+  width: 100%;
+  font-weight: bold;
+  font-family: 'JeanLuc Thin'; }
+  @media (max-width: 768px) {
+    .menu-title,
+    .boissons-title,
+    .vins-title {
+      font-size: 2.5rem; } }
+  @media (max-width: 480px) {
+    .menu-title,
+    .boissons-title,
+    .vins-title {
+      font-size: 1.5rem; } }
+
+.vins-title {
+  line-height: 65px; }
+
+.swiper-slide h3 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  text-align: left;
+  font-family: 'JeanLuc Thin';
+  width: 100%; }
+  @media (max-width: 768px) {
+    .swiper-slide h3 {
+      font-size: 1.8rem; } }
+  @media (max-width: 480px) {
+    .swiper-slide h3 {
+      font-size: 1.4rem; } }
+
+.menu-subtitle,
+.boissons-subtitle,
+.vins-subtitle {
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+  display: flex;
+  width: 100%; }
+  @media (max-width: 768px) {
+    .menu-subtitle,
+    .boissons-subtitle,
+    .vins-subtitle {
+      font-size: 0.7rem; } }
+  @media (max-width: 480px) {
+    .menu-subtitle,
+    .boissons-subtitle,
+    .vins-subtitle {
+      font-size: 0.6rem; } }
+
+.menu-item,
+.boissons-item,
+.vins-item {
+  font-size: 0.8rem;
+  margin-bottom: 3px;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  width: 90%; }
+  @media (max-width: 768px) {
+    .menu-item,
+    .boissons-item,
+    .vins-item {
+      font-size: 0.7rem; } }
+  @media (max-width: 480px) {
+    .menu-item,
+    .boissons-item,
+    .vins-item {
+      font-size: 0.6rem; } }
+
+#swip-1 {
+  background-color: #ff69b4;
+  overflow: hidden; }
+
+#swip-2 {
+  background-color: #ffd700;
+  height: 110vh !important; }
+  @media (max-width: 768px) {
+    #swip-2 {
+      height: auto; } }
+  @media (max-width: 480px) {
+    #swip-2 {
+      height: auto; } }
+
+#swip-3 {
+  background-color: #87ceeb;
+  height: 120vh !important; }
+  @media (max-width: 768px) {
+    #swip-3 {
+      height: auto; } }
+  @media (max-width: 480px) {
+    #swip-3 {
+      height: auto; } }
+
+.mini-title {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px; }
+  .mini-title .mini-title-h1 {
+    font-family: "JeanLuc Thin", Arial, sans-serif;
+    font-size: 1rem !important; }
+    .mini-title .mini-title-h1 .mini-highlight {
+      font-size: 3rem;
+      position: relative;
+      top: 20px; }
+  .mini-title .mini-sub-title {
+    font-size: 50%; }
+
+.price {
+  margin-left: auto; }
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .popup-content {
+    width: 100%; }
+
+  .swiper-container {
+    width: 80%; }
+
+  .swiper-slide {
+    padding: 0 40px; } }
+@media (max-width: 480px) {
+  .popup-content {
+    width: 100%; }
+
+  .swiper-container {
+    width: 90% !important;
+    margin: auto;
+    /* Le swiper prend 90% de la largeur en mobile */ }
+
+  .swiper-slide {
+    padding: 0 20px; } }
 
 /*# sourceMappingURL=styles.css.map */

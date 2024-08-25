@@ -70,16 +70,25 @@
                     <p class="restaurant-description">Ici c’est comme aller au marché cours Saleya mais sans être obligé de prendre un Airbnb géré par un Parisien et de se lever le dimanche matin.</p>
                     <img src="path/to/your/image.jpg" alt="Market image" class="restaurant-image">
                     <div class="restaurant-buttons">
-                        <button class="restaurant-button"><a href="./carte.html">La carte</a></button>
+                        <button class="restaurant-button"><a href="#" class="open-popup">Carte</a>
+                        </button>
                         <button class="restaurant-button"><a href="./reservation.html">Réserver</a></button>
                     </div>
                 </div>
             </section>
         </main>
+        <div id="carte-popup" class="popup">
+            <div class="popup-content">
+                <span class="close-popup">&times;</span>
+                <iframe src="carte.html" frameborder="0"></iframe>
+            </div>
+        </div>
+        
     </div>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="assets/js/features.js"></script>
     <script src="assets/js/transition.js"></script>
+    <script src="assets/js/popup.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
             loop: true,
