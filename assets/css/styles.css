@@ -978,7 +978,7 @@ body.shop-body {
 
 #swip-2 {
   background-color: #ffd700;
-  height: 110vh !important; }
+  height: 120vh !important; }
   @media (max-width: 768px) {
     #swip-2 {
       height: auto; } }
@@ -988,7 +988,7 @@ body.shop-body {
 
 #swip-3 {
   background-color: #87ceeb;
-  height: 120vh !important; }
+  height: 130vh !important; }
   @media (max-width: 768px) {
     #swip-3 {
       height: auto; } }
