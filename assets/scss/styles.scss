@@ -52,14 +52,29 @@ a{
     text-decoration: none;
 }
 // Prealoader
+.cedille {
+    position: relative; /* Nécessaire pour positionner le pseudo-élément relativement à l'élément .cedille */
+}
 
+.cedille::after {
+    content: '';
+    position: absolute;
+    bottom: 2px !important;
+    left: 50%;
+    transform: translateX(-50%); /* Centre le trait sous la lettre "C" */
+    bottom: -3px; /* Ajustez cette valeur pour rapprocher ou éloigner le trait de la lettre */
+    width: 20px; /* Largeur du trait */
+    height: 7px; /* Épaisseur du trait */
+    background-color: black; /* Couleur du trait */
+}
+/* Styles pour le preloader */
 #preloader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: $carte-yellow-background;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,23 +86,23 @@ a{
     transform: scale(2);
 }
 
-// Styles pour index.html
+/* Styles pour la page d'accueil */
 body.index-body {
-    font-family: 'Apercu Mono', Arial, sans-serif;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-color: #161616;
 }
 
+/* Header de la page */
 .index-header {
     text-align: center;
     padding: 10px;
     height: 6vh !important;
-    position: sticky;  // Permet au header de rester collé en haut lors du défilement
+    position: sticky;  /* Permet au header de rester collé en haut lors du défilement */
     top: 0;
-    background-color: white;  // Fond pour éviter le chevauchement avec le contenu
-    z-index: 1000;  // Assure que le header reste au-dessus des autres éléments lorsqu'il devient sticky
-    // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    background-color: white;  /* Fond pour éviter le chevauchement avec le contenu */
+    z-index: 1000;  /* Assure que le header reste au-dessus des autres éléments lorsqu'il devient sticky */
 }
 
 .index-logo {
@@ -97,92 +112,73 @@ body.index-body {
     top: -50px !important;
     color: black;
     transform: scale(0.3);
-
-    .highlight {
-        font-weight: bold;
-        font-size: 10rem;
-        position: relative;
-        top: 40px !important;
-    }
 }
 
-.section {
+.index-logo .index-highlight {
+    font-weight: bold;
+    font-size: 10rem;
     position: relative;
-    width: 100%;
-    height: 30vh; // Divise l'écran en trois parties égales
+    top: 40px !important;
+}
+
+/* Style des sections */
+.index-section {
+    position: relative;
+    margin:0 2px;
+    width: 33%; /* Chaque section prend un tiers de la largeur de l'écran */
+    height: 100vh; /* La hauteur est égale à la hauteur de l'écran */
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.93);
-        transform: translateX(-100%);
-        transition: transform 0.8s ease-in-out;
-    }
-
-    .content {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        color: black;
-        font-size: 2rem;
-        opacity: 0 !important;
-        transition: opacity 0.5s ease-in-out;
-        font-family: 'JeanLuc Thin', Arial, sans-serif;
-
-        &:after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;  // Épaisseur du soulignement
-            background: black;
-            margin: -30px 0 0 0;  // Positionne le soulignement sous le texte
-            transition: width 0.9s ease-in-out;
-            text-align: left;  // Aligne le soulignement à gauche
-        }
-    }
-
-    &:hover .overlay {
-        transform: translateX(0);
-    }
-
-    &:hover .content {
-        opacity: 1 !important;
-    }
-
-    &:hover .content:after {
-        width: 100%;  // Le soulignement s'étend sur toute la largeur du texte au survol
-    }
-
-    &:not(:hover) .overlay {
-        transform: translateX(100%);
-    }
-
-    &:not(:hover) .content {
-        opacity: 0;
-    }
-
-    &:not(:hover) .content:after {
-        width: 0;  // Le soulignement disparaît en se rétractant
-    }
+    float: left; /* Les sections sont flottées pour être côte à côte horizontalement */
 }
 
-
-
-.section-link {
-    text-decoration: none;
-    display: block;
+#index-section-1 {
+    background-image: url('../img/background/section-1.jpg'); /* Image pour la section 1 */
 }
 
+#index-section-2 {
+    background-image: url('../img/background/section-2.jpg'); /* Image pour la section 2 */
+}
+
+#index-section-3 {
+    background-image: url('../img/background/section-3.jpg'); /* Image pour la section 3 */
+    background-position: left;
+}
+
+/* Contenu des sections invisible par défaut */
+.index-section .index-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: black;
+    -webkit-text-stroke: 1px white;
+    font-size: 5rem;
+    font-family: 'JeanLuc Thin', Arial, sans-serif;
+    opacity: 0; /* Contenu invisible par défaut */
+    transition: opacity 1s ease-in-out; /* Transition pour faire apparaître le contenu */
+}
+
+/* Apparition du contenu au survol */
+.index-section:hover .index-content {
+    opacity: 1; /* Le contenu devient visible au survol */
+}
+
+/* Responsive Media Query pour les tablettes */
 @media (max-width: 768px) {
+
+    .title-container{
+        transform: scale(0.9) !important;
+    }
+
+    .cedille::after{
+        height: 4px;
+        width: 12px;
+    }
     .index-header {
         padding: 15px;
         height: 20vh;
@@ -190,12 +186,36 @@ body.index-body {
 
     .index-logo {
         font-size: 3rem;
-        top: -80px;  // Ajustement de la position en fonction de la taille d'écran plus petite
+        top: -80px;  /* Ajustement de la position en fonction de la taille d'écran plus petite */
 
-        .highlight {
+        .index-highlight {
             font-size: 7rem;
-            top: 40px;  // Ajustement de la position relative de .highlight
+            top: 40px;  /* Ajustement de la position relative de .index-highlight */
         }
+    }
+
+    /* Mise en page pour les tablettes */
+    .index-section {
+        width: 100%; /* Chaque section prend toute la largeur de l'écran */
+        height: 33vh; /* La hauteur est un tiers de la hauteur de l'écran */
+        float: none; /* Retrait du flottement pour l'empilement vertical */
+        margin: 2px 0;
+    }
+
+    #index-section-1 {
+        background-image: url('../img/background/background-mobile.png'); /* Image pour la section 1 en mobile */
+    }
+
+    #index-section-2 {
+        background-image: url('../img/background/section-2.jpg'); /* Image pour la section 2 en mobile */
+        background-size: 200%;
+    }
+
+    #index-section-3 {
+        background-image: url('../img/background/section-3.jpg'); /* Image pour la section 3 en mobile */
+    }
+    .index-section .index-content{
+        font-size: 4rem;
     }
 }
 
@@ -207,16 +227,14 @@ body.index-body {
 
     .index-logo {
         font-size: 2.5rem;
-        top: -60px;  // Ajustement supplémentaire pour les écrans très petits
+        top: -60px;  /* Ajustement supplémentaire pour les écrans très petits */
 
-        .highlight {
+        .index-highlight {
             font-size: 5rem;
-            top: 30px;  // Ajustement supplémentaire pour la position relative de .highlight
+            top: 30px;  /* Ajustement supplémentaire pour la position relative de .index-highlight */
         }
     }
 }
-
-
 
 /* Styles pour restaurant.html */
 body.restaurant-body {
@@ -1063,7 +1081,7 @@ body.shop-body {
     width: 100%;
     height: 100%;
     // overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Fond sombre */
+    background-color: rgba(0, 0, 0, 0.99); /* Fond sombre */
 }
 
 .popup-content {
@@ -1151,7 +1169,7 @@ body.shop-body {
 .menu-title,
 .boissons-title,
 .vins-title {
-    font-size: 5rem !important;
+    font-size: 4rem !important;
     margin-bottom: -5px;
     text-align: left !important;
     width: 100%;
@@ -1159,11 +1177,11 @@ body.shop-body {
     font-family: 'JeanLuc Thin';
 
     @media (max-width: 768px) {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
     }
 
     @media (max-width: 480px) {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 }
 
@@ -1287,11 +1305,11 @@ body.shop-body {
         width: 100%;
     }
     .swiper-container {
-        width: 80%;
+        width: 100%;
     }
 
     .swiper-slide {
-        padding: 0 40px;
+        padding: 0 20px;
     }
 }
 
@@ -1301,11 +1319,205 @@ body.shop-body {
         width: 100%;
     }
     .swiper-container {
-        width: 90% !important;
+        width: 100% !important;
         margin: auto; /* Le swiper prend 90% de la largeur en mobile */
     }
 
     .swiper-slide {
         padding: 0 20px;
     }
+}
+
+// Restaurant-2.html
+
+.manifesto-body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    overflow: scroll;
+}
+
+.manifesto-sections-container {
+    display: flex;
+    width: 100% !important;
+    height: 100vh; 
+    font-family: $title-font;
+}
+
+.manifesto-section {
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.manifesto-image {
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out; 
+}
+
+.manifesto-content {
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+}
+
+#manifesto-main-content {
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    .manifesto-subtitle{
+        margin-top: -40px;
+    }
+}
+
+.manifesto-title {
+    font-size: 2.5rem;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.manifesto-subtitle {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.manifesto-buttons {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.restaurant-button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin: 0 10px;
+}
+
+.restaurant-button:hover {
+    background-color: white;
+    color: black;
+}
+
+.manifesto-ig-container{
+    margin-top: 40px !important;
+    margin: auto;
+    background-color: #000;
+    padding: 10px;
+
+    h2{
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+        font-family: $title-font;
+        font-size: 300%;
+    }
+
+    #instagram-username {
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 10px;
+        color: white;
+        font-family: $title-font;
+    }
+
+    #instagram-feed {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+
+    .instagram-image {
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%; /* Carré */
+        object-fit: cover;
+        position: relative;
+    }
+
+    .instagram-image img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+}
+
+
+
+@media (max-width: 768px) {
+
+    h1{
+        font-size: 2.3rem !important;
+    }
+    .manifesto-sections-container {
+        display: block; /* Permet de réorganiser les sections en bloc */
+        flex-direction: column;
+        height: 100vh;
+        font-size: 50%;
+    }
+
+    .manifesto-section{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        height: 33.33%;
+    }
+
+
+    .manifesto-content{
+        width: 50%;
+        height: 33.33vh;
+        h1, h2{
+            font-size: 220%;
+        }
+    }
+
+    .manifesto-image{
+        width: 50%;
+        height: 33.33vh;
+        border: 1px solid black;
+    }
+
+    .manifesto-section-middle {
+        .manifesto-subtitle{
+            font-size: 1rem !important;
+            margin-top: -1px !important;
+        }
+    }
+
+    .restaurant-buttons{
+        button{
+            a{
+                font-size: 1rem;
+            }
+        }
+
+    }
+    
+
 }

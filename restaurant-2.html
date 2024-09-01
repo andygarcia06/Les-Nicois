@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Niçois - Manifesto</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body class="manifesto-body">
+
+    <header>
+        <nav class="restaurant-nav">
+            <ul>
+                <li><a href="restaurant.html" class="active">Resto</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="radio.html">radio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="manifesto-sections-container">
+        <!-- Section Gauche -->
+        <div class="manifesto-section manifesto-section-left">
+            <div class="manifesto-image" id="left-image" style="background-image: url('./assets/img/restaurant/photo-1.jpg');"></div>
+            <div class="manifesto-content">
+                <h2 class="manifesto-title">7 RUE LACHARRIÈRE<br> PARIS 11</h2>
+            </div>
+        </div>
+
+        <!-- Section Milieu -->
+        <div class="manifesto-section manifesto-section-middle">
+            <div class="manifesto-content" id="manifesto-main-content">
+                <h1 class="manifesto-title">LES NIÇOIS</h1> <br><br>
+                <p class="manifesto-subtitle">Restaurant - bar - pétanque</p>
+            </div>
+            <div class="manifesto-image" id="middle-image" style="background-image: url('./assets/img/restaurant/photo-2.jpg');"></div>
+        </div>
+
+        <!-- Section Droite -->
+        <div class="manifesto-section manifesto-section-right">
+            <div class="manifesto-image" id="right-image" style="background-image: url('./assets/img/restaurant/photo-3.jpg');"></div>
+            <div class="manifesto-content">
+                <h2 class="manifesto-title">MARDI AU SAMEDI<br>18H - 1H30</h2>
+            </div>
+        </div>
+    </div>
+    <div class="manifesto-ig-container">
+        <h2>Suivez-nous sur Instagram</h2>
+        <div id="instagram-username"></div>
+        <div id="instagram-feed"></div>
+    </div>
+
+    <div id="carte-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <iframe src="carte.html" frameborder="0"></iframe>
+        </div>
+    </div>
+
+
+    <div class="restaurant-buttons">
+        <button class="restaurant-button"><a href="#" class="open-popup">La carte</a></button>
+        <button class="restaurant-button"><a href="./reservation.html">Réserver</a></button>
+    </div>
+    <script src="./assets/js/manifesto.js"></script>
+    <script src="assets/js/popup.js"></script>
+
+</body>
+</html>
