@@ -9,13 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 </head>
 <body class="manifesto-body">
+    <div id="audio-container">
+        <audio id="radio-player" src="https://str0.creacast.com/purelectro2" preload="none"></audio>
+    </div>
 
     <header>
         <nav class="restaurant-nav">
             <ul>
-                <li><a href="restaurant.html" class="active">Resto</a></li>
+                <li><a href="restaurant-2.html" class="active">Resto</a></li>
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="radio.html">radio</a></li>
+                <li><a href="radio.html">Radio</a></li>
             </ul>
         </nav>
     </header>
@@ -51,7 +54,58 @@
         <div id="instagram-username"></div>
         <div id="instagram-feed"></div>
     </div>
-
+    <section class="manifesto-text-big">
+        <div class="manifesto-text-block manifesto-text-title">
+            <h2 class="manifesto-text">À TABLE</h2>
+        </div>
+        <div class="manifesto-text-block">
+            <h3 class="manifesto-text">ICI C'EST COMME ALLER AU MARCHÉ COURS SALEYA</h3>
+            <img src="./assets/img/1.png" alt="Image 1">
+            <h3 class="manifesto-text">MAIS SANS ÊTRE OBLIGÉ DE PRENDRE UN AIRBNB GÉRÉ PAR UN PARISIEN ET DE SE LEVER LE DIMANCHE MATIN</h3>
+        </div>
+        <div class="manifesto-text-block">
+            <h3 class="manifesto-text">DE TOUTES FAÇONS, ON NE VA PAS SE MENTIR, ON VOUS PRÉFÈRE CHEZ VOUS.</h3>
+            <img src="./assets/img/2.png" alt="Image 2">
+        </div>
+        <div class="manifesto-text-block">
+            <h3 class="manifesto-text">TU TROUVES QU'ON EXAGÈRE?</h3>
+            <h3 class="manifesto-text">NON, ON SAIT, C'EST TOUT. <span class="text-highlight">ICI C'EST MIEUX.</span></h3>
+            <img src="./assets/img/3.png" alt="Image 3">
+            <h3 class="manifesto-text">D'AILLEURS IL Y A QUOI DANS TON ASSIETTE LÀ?</h3>
+        </div>
+        <div class="manifesto-text-block">
+            <h3 class="manifesto-text">ATTENDS, LAISSE-MOI DEVINER: <span class="text-red">TOMATES</span>, <span class="text-yellow">CITRONS</span>, <span class="text-green">OLIVES</span>, <span class="text-brown">POIVRONS</span>, <span class="text-purple">AUBERGINES</span>, <span class="text-violet">FIGUES</span>… JE PASSE SUR LE HOUMOUS DANS LE FRIGO ET LE ROSÉ QUI PATIENTE À CÔTÉ. VOILÀ.</h3>
+        </div>
+        <div class="manifesto-text-block">
+            <h3 class="manifesto-text">EN FAIT, TU NOUS RÊVES TOUTE L'ANNÉE COPAIN.</h3>
+            <h3 class="manifesto-text">ALLEZ ÇA VA, <span class="text-highlight">VIENS.</span></h3>
+            <img src="./assets/img/4.png" alt="Image 4">
+        </div>
+        <div class="manifesto-text-block">
+            <h3 class="manifesto-text">SI TU VEUX TE RAPPELER AU BON SOUVENIR DE TON ÉTÉ TROP COURT</h3>
+            <h3 class="manifesto-text">DES APÉROS IMPROVISÉS, ET DES SOIRÉES ARROSÉES, TU SAIS À QUI T'ADRESSER.</h3>
+            <img src="./assets/img/5.png" alt="Image 5">
+        </div>
+        <div class="manifesto-text-block">
+            <h3 class="manifesto-text">ON VOUS LAISSE LES POLITESSES.</h3>
+            <h3 class="manifesto-text">NOUS ON PRÉFÈRE <span class="text-highlight">LA GÉNÉROSITÉ.</span></h3>
+            <img src="./assets/img/6.png" alt="Image 6">
+        </div>
+        <div class="manifesto-text-block">
+            <h3 class="manifesto-text">D'AILLEURS ON N'OBLIGE PERSONNE À SE RESSERVIR UNE 3E FOIS.</h3>
+            <img src="./assets/img/7.png" alt="Image 7">
+        </div>
+        <div class="manifesto-text-block">
+            <h3 class="manifesto-text">ALORS SI TU VEUX LE SOLEIL ET LES CIGALES</h3>
+            <h3 class="manifesto-text">PRENDS UN BILLET DE TRAIN.</h3>
+            <img src="./assets/img/8.png" alt="Image 8">
+        </div>
+        <div class="manifesto-text-block">
+            <h3 class="manifesto-text">SINON IL Y A</h3>
+            <img id="logo-manifesto" src="./assets/img/logo/Logo-Les-Niçois.png" alt="Image 9">
+        </div>
+    </section>
+    
     <div id="carte-popup" class="popup">
         <div class="popup-content">
             <span class="close-popup">&times;</span>
@@ -65,7 +119,11 @@
         <button class="restaurant-button"><a href="./reservation.html">Réserver</a></button>
     </div>
     <script src="./assets/js/manifesto.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/features.js"></script>
+    <script src="assets/js/transition.js"></script>
     <script src="assets/js/popup.js"></script>
+    <script src="assets/js/player"></script>
 
 </body>
 </html>

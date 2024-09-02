@@ -21,6 +21,8 @@
     navigation: auto;
 }
 
+
+
 $primary-color: #3498db;
 $primary-font: 'Apercu Mono', Arial, sans-serif;
 $title-font: 'JeanLuc Thin', Arial, sans-serif;
@@ -248,6 +250,7 @@ body.restaurant-body {
 .restaurant-nav {
     background: #000;
     position: fixed;
+    font-family: 'Apercu Mono';
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -565,121 +568,113 @@ body.radio-body {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch; /* iOS overflow scrolling */
     scroll-behavior: smooth; /* Smooth scrolling */
+    background-color: #000;
 }
 
-.radio-section {
-    background-color: $background-blue;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    height: calc(100vh - 6vh); /* Ajuster la hauteur pour prendre tout l'espace disponible */
+.radio-section{
+    margin: auto;
+    width: 50%;
+    justify-content: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: $title-font;
-    cursor: grab;
-
-    span {
-        position: relative;
-        bottom: 5vh;
-        font-size: 2vw;
-    }
-}
-
-.radio-title,
-.radio-subtitle {
-    margin: 10px 0;
-    transition: all 1.6s ease;
-}
-
-.radio-title:hover,
-.radio-subtitle:hover {
-    transform: scale(1.1);
+    text-align: center;
 }
 
 .radio-title {
-    font-size: 6vw;
-    margin: 0;
+    margin-top: 10vh;
+    font-size: 8rem !important;
+    margin-right: 10px;
+    color: white;
+    font-family: $title-font;
+
+    span{
+        font-size: 3rem !important;
+        position: relative;
+        bottom: 5vh;
+        left: 18px;
+    }
 }
 
-.radio-subtitle {
-    font-size: 6vw;
-    margin: -5px 0;
-}
-
-.radio-buttons {
+.radio-player-info {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
 }
 
 .radio-button {
-    background-color: white;
-    color: black;
+    background-color: black;
+    position: absolute;
+    top: 25vh;
+    color: white !important;
     border: none;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     cursor: pointer;
     transition: all 0.6s ease;
-    color: $background-blue;
-    border: white;
+    color: black;
+
+    i{
+        transform: scale(2);
+    }
 }
 
-.radio-button:hover {
-    background-color: $background-blue;
-    border: white;
-    color: white;
-    transform: scale(1.2);
+.song-info {
+    margin-left: 20px;
+    font-size: 1.2rem;
 }
 
+.song-info p {
+    margin: 0;
+}
+
+#song-title {
+    text-decoration: underline;
+    font-size: 1.4rem;
+}
+
+/* Media Query pour les tablettes */
+@media (max-width: 1024px) {
+    .radio-title {
+        font-size: 6rem !important;
+        margin-top: 8vh;
+    }
+
+    .radio-title span {
+        font-size: 2.5rem !important;
+        bottom: 4vh;
+        left: 15px;
+    }
+}
+
+/* Media Query pour les smartphones */
 @media (max-width: 768px) {
     .radio-title {
-        font-size: 20vw;
-        span{
-            font-size: 6vw;
-        }
+        font-size: 4.5rem !important;
+        margin-top: 6vh;
     }
 
-    .radio-subtitle {
-        font-size: 20vw;
-        span{
-            font-size: 6vw;
-        }
-    }
-
-    .radio-button {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+    .radio-title span {
+        font-size: 2rem !important;
+        bottom: 3vh;
     }
 }
 
+/* Media Query pour les très petits écrans */
 @media (max-width: 480px) {
     .radio-title {
-        font-size: 20vw;
-        span{
-            font-size: 6vw;
-        }
+        font-size: 4.5rem !important;
+        margin-top: 2vh;
     }
 
-    .radio-subtitle {
-        font-size: 20vw;
-        span{
-            font-size: 6vw;
-        }
-    }
-
-    .radio-button {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
+    .radio-title span {
+        font-size: 1.5rem !important;
+        top: 7vh;
+        left: -110px !important;
     }
 }
 
@@ -1116,27 +1111,96 @@ body.shop-body {
 }
 
 .swiper-controller {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.swiper-button-prev, .swiper-button-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-
-    &.swiper-button-prev {
-        left: -40px; /* Ajuste cette valeur pour déplacer la flèche vers l'extérieur */
+    .swiper-button-prev,
+    .swiper-button-next {
+        position: absolute;
+        z-index: 1000;
+        width: 30px;  // Réduire la taille des flèches
+        height: 30px;
+        background-color: black;  // Fond noir
+        color: white;  // Flèches blanches
+        border-radius: 4px;  // Optionnel: coins légèrement arrondis
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 6px;  // Ajuster la taille des flèches
     }
 
-    &.swiper-button-next {
-        right: -40px; /* Ajuste cette valeur pour déplacer la flèche vers l'extérieur */
+    .swiper-button-prev {
+        left: 10px;  // Ajuster la position du bouton à gauche
+    }
+
+    .swiper-button-next {
+        right: 10px;  // Ajuster la position du bouton à droite
+    }
+
+    .swiper-button-prev::after {
+        content: '\276E';  // Flèche gauche
+        font-size: 16px;
+    }
+
+    .swiper-button-next::after {
+        content: '\276F';  // Flèche droite
+        font-size: 16px;
+    }
+
+}
+
+   // Tablettes
+   @media (max-width: 1024px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 25px;  // Réduire la taille du carré
+        height: 25px;
+        font-size: 14px;  // Réduire la taille des flèches
+    }
+
+    .swiper-button-prev {
+        left: -10px;  // Décalage de 10px à gauche
+    }
+
+    .swiper-button-next {
+        right: -10px;  // Décalage de 10px à droite
     }
 }
+
+// Smartphones
+@media (max-width: 768px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 20px !important;  // Réduire encore la taille du carré
+        height: 20px !important;
+        font-size: 12px;  // Réduire la taille des flèches
+    }
+
+    .swiper-button-prev {
+        left: -10px;  // Décalage de 10px à gauche
+    }
+
+    .swiper-button-next {
+        right: -10px;  // Décalage de 10px à droite
+    }
+}
+
+// Très petits écrans
+@media (max-width: 480px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 15px !important;  // Réduire encore la taille du carré
+        height: 15px !important;
+        font-size: px;  // Réduire la taille des flèches
+    }
+
+    .swiper-button-prev {
+        left: -10px;  // Décalage de 10px à gauche
+    }
+
+    .swiper-button-next {
+        right: -10px;  // Décalage de 10px à droite
+    }
+}
+
 
 // Carte.html
 
@@ -1249,7 +1313,7 @@ body.shop-body {
 
 #swip-2 {
     background-color: $carte-yellow-background;
-    height: 120vh !important;
+    height: 140vh !important;
 
     @media (max-width: 768px) {
         height: auto;
@@ -1262,7 +1326,7 @@ body.shop-body {
 
 #swip-3 {
     background-color: $carte-blue-background;
-    height: 130vh !important;
+    height: 170vh !important;
 
     @media (max-width: 768px) {
         height: auto;
@@ -1339,6 +1403,7 @@ body.shop-body {
 
 .manifesto-sections-container {
     display: flex;
+    margin-top: 6vh;
     width: 100% !important;
     height: 100vh; 
     font-family: $title-font;
@@ -1356,7 +1421,7 @@ body.shop-body {
     height: 50%;
     background-size: cover;
     background-position: center;
-    transition: background-image 1s ease-in-out; 
+    transition: opacity 1s ease-in-out; /* Transition pour le fondu */
 }
 
 .manifesto-content {
@@ -1417,7 +1482,7 @@ body.shop-body {
 }
 
 .manifesto-ig-container{
-    margin-top: 40px !important;
+    // margin-top: 40px !important;
     margin: auto;
     background-color: #000;
     padding: 10px;
@@ -1467,6 +1532,105 @@ body.shop-body {
 
 }
 
+.manifesto-text-big {
+    padding: 20px;
+    background-color: #fff;
+    .manifesto-text-title{
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        h2{
+            font-size: 5rem !important;
+        }
+    }
+    
+    .manifesto-text-block {
+        margin-bottom: 30px;
+        text-align: center;
+
+        .manifesto-text {
+            font-family: $title-font;
+            font-size: 8vw;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin: 0 0 20px 0;
+        }
+
+        img {
+            width: 50%;
+            margin: 20px 0;
+            display: block;
+        }
+    }
+}
+
+// Adding colors to match the image
+
+.text-red {
+    color: #FF0000; // Red for "TOMATES"
+}
+
+.text-yellow {
+    color: #FFD700; // Yellow for "CITRONS"
+}
+
+.text-green {
+    color: #228B22; // Green for "OLIVES"
+}
+
+.text-brown {
+    color: #8B4513; // Brown for "POIVRONS"
+}
+
+.text-purple {
+    color: #800080; // Purple for "AUBERGINES"
+}
+
+.text-violet {
+    color: #9400D3; // Violet for "FIGUES"
+}
+
+.text-highlight {
+    color: #000; // Default black, can change if needed
+}
+
+.manifesto-text-big {
+    padding: 20px;
+    background-color: #fff;
+    
+    .manifesto-text-block {
+        margin-bottom: 30px;
+        text-align: center;
+
+        .manifesto-text {
+            font-family: $title-font;
+            font-size: 4rem;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin: 0 0 20px 0;
+
+            // Ensuring the color is inherited except for spans
+            color: inherit;
+
+            span {
+                font-weight: bold; // Making the colored spans bold for emphasis
+            }
+        }
+
+        img {
+            width: 50%;
+            margin: 20px 0;
+            display: block;
+        }
+    }
+}
+
+#logo-manifesto{
+    transform: scale(0.4);
+    margin: auto;
+}
 
 
 @media (max-width: 768px) {
@@ -1500,7 +1664,6 @@ body.shop-body {
     .manifesto-image{
         width: 50%;
         height: 33.33vh;
-        border: 1px solid black;
     }
 
     .manifesto-section-middle {
@@ -1517,6 +1680,19 @@ body.shop-body {
             }
         }
 
+    }
+
+    .manifesto-text-big {
+        .manifesto-text-block {
+            .manifesto-text {
+                font-size: 6vw;
+            }
+
+            img {
+                width: 80%;
+                margin: 10px auto;
+            }
+        }
     }
     
 

@@ -72,19 +72,26 @@ document.addEventListener("DOMContentLoaded", () => {
     async function fetchInstagramData() {
         try {
             const response = await fetch('http://localhost:3000/fetch-instagram-data');
+    
+            // Vérifie si la réponse est correcte (code 2xx)
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Erreur inconnue');
+            }
+    
             const data = await response.json();
-
+    
             // Afficher le nom d'utilisateur
             const usernameElement = document.getElementById('instagram-username');
             usernameElement.textContent = `@${data.username}`;
-
+    
             // Afficher les 9 dernières images
             const feedElement = document.getElementById('instagram-feed');
             data.media.forEach(media => {
                 if (media.media_type === 'IMAGE' || media.media_type === 'CAROUSEL_ALBUM' || media.media_type === 'VIDEO') {
                     const container = document.createElement('div');
                     container.className = 'instagram-image';
-
+    
                     const imgElement = document.createElement('img');
                     imgElement.src = media.media_url;
                     imgElement.alt = media.caption || 'Instagram image';
@@ -95,11 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         } catch (error) {
             console.error('Erreur lors de la récupération des données Instagram:', error);
+            alert('Une erreur est survenue lors de la récupération des données Instagram: ' + error.message);
         }
     }
-
-    // Récupérer les données lorsque la page est chargée
-    window.onload = fetchInstagramData;
-    // Récupérer les données lorsque la page est chargée
     window.onload = fetchInstagramData;
 });

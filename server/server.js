@@ -1,6 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import cors from 'cors';
+import cors from 'cors';  // Ajoutez cette ligne
 
 
 
@@ -77,33 +77,29 @@ const longTermToken = 'IGQWRPUjdKRzdzaThCeV92dnpjXzJYYWQ0X1dpeFFlTWJKUTdBREc5OFd
 
 app.get('/fetch-instagram-data', async (req, res) => {
     try {
-        // Requête pour récupérer les informations de l'utilisateur
         const userResponse = await fetch(`https://graph.instagram.com/me?fields=username&access_token=${longTermToken}`);
         const userData = await userResponse.json();
 
         if (userData.error) {
-            return res.status(400).send(`Erreur: ${userData.error.message}`);
+            return res.status(400).json({ error: userData.error.message });
         }
 
-        // Requête pour récupérer les 9 dernières images
         const mediaResponse = await fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,timestamp&access_token=${longTermToken}&limit=9`);
         const mediaData = await mediaResponse.json();
 
         if (mediaData.error) {
-            return res.status(400).send(`Erreur: ${mediaData.error.message}`);
+            return res.status(400).json({ error: mediaData.error.message });
         }
 
-        // Envoyer les données nécessaires au front-end
         res.json({
             username: userData.username,
             media: mediaData.data
         });
     } catch (error) {
         console.error('Erreur lors de la récupération des données:', error);
-        res.status(500).send('Erreur serveur.');
+        res.status(500).json({ error: 'Erreur serveur.' });
     }
 });
-
 
 
 app.listen(3000, () => {

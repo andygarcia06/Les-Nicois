@@ -18,25 +18,23 @@
         <header>
             <nav class="restaurant-nav">
                 <ul>
-                    <li><a href="restaurant.html">Resto</a></li>
+                    <li><a href="restaurant-2.html">Resto</a></li>
                     <li><a href="shop.html">Shop</a></li>
-                    <li><a href="radio.html" class="active">radio</a></li>
+                    <li><a href="radio.html" class="active">Radio</a></li>
                 </ul>
             </nav>
         </header>
         <main>
             <section class="radio-section">
-                <h1 class="radio-title"><span>IN </span>TRANSAT</h1>
-                <h2 class="radio-subtitle"><span>WITH </span><span>LES</span> NIÇOIS PLAYLIST</h2>
-                <h3 class="radio-subtitle"><span>PAR CHINOCHIO</span></h3>
-                <h2 class="radio-subtitle">SPRING / ÉTÉ 24</h2>
-                <h3 class="radio-subtitle"><span>TO CHILL SUR TON</span> BALCON</h3>
-                <div class="radio-buttons">
-                    <button class="radio-button" onclick="playRadio()"><i class="fas fa-play"></i></button>
-                    <button class="radio-button" onclick="pauseRadio()"><i class="fas fa-pause"></i></button>
+                <div class="radio-header">
+                    <h1 class="radio-title"><span>LES</span> NIÇOIS</h1>
+                    <div class="radio-player-info">
+                        <button class="radio-button" id="play-pause-button"><i class="fas fa-play"></i></button>
+                    </div>
                 </div>
             </section>
-            <audio id="radio-player" autoplay src="https://str0.creacast.com/purelectro2" preload="none"></audio>
+            </section>
+            <audio id="radio-player"  src="https://str0.creacast.com/purelectro2" preload="none"></audio>
 
         </main>
     </div>
