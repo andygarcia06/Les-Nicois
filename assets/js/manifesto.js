@@ -68,42 +68,97 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     startRotations(); // Lance les rotations
+    
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const accessToken = 'IGQWRNWFhKMXZAfdVN6amhvSWJhYzNUOFM5emhsOE0zRHY4N1ROMVB2UkNPYWdQTlVxeTFnWEd6UEIwamdBRnhpMUdnYVYtM3l0TVpmb1NnclhCdGJrZAzFsbWFSYmlHdHRsb1ZAoanU2LVU4ZAwZDZD'; // Remplacez par votre vrai token
 
     async function fetchInstagramData() {
         try {
-            const response = await fetch('http://localhost:3000/fetch-instagram-data');
-    
-            // Vérifie si la réponse est correcte (code 2xx)
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Erreur inconnue');
-            }
-    
+            // Récupérer les données depuis l'API via le serveur
+            const response = await fetch(`http://localhost:3000/fetch-instagram-data?access_token=${accessToken}`);
             const data = await response.json();
     
-            // Afficher le nom d'utilisateur
-            const usernameElement = document.getElementById('instagram-username');
-            usernameElement.textContent = `@${data.username}`;
+            if (data.error) {
+                console.error('Erreur lors de la récupération des données:', data.error);
+                return;
+            }
     
-            // Afficher les 9 dernières images
-            const feedElement = document.getElementById('instagram-feed');
-            data.media.forEach(media => {
-                if (media.media_type === 'IMAGE' || media.media_type === 'CAROUSEL_ALBUM' || media.media_type === 'VIDEO') {
-                    const container = document.createElement('div');
-                    container.className = 'instagram-image';
-    
-                    const imgElement = document.createElement('img');
-                    imgElement.src = media.media_url;
-                    imgElement.alt = media.caption || 'Instagram image';
-                    
-                    container.appendChild(imgElement);
-                    feedElement.appendChild(container);
-                }
-            });
+            // Afficher les données
+            displayInstagramData(data);
         } catch (error) {
-            console.error('Erreur lors de la récupération des données Instagram:', error);
-            alert('Une erreur est survenue lors de la récupération des données Instagram: ' + error.message);
+            console.error('Erreur lors de la récupération des données:', error);
         }
     }
-    window.onload = fetchInstagramData;
+    
+    function displayInstagramData(data) {
+        const { username, media } = data;
+
+        // Vérifier qu'on a bien au moins 18 photos
+        if (media.length < 18) {
+            console.error('Moins de 18 photos disponibles.');
+            return;
+        }
+    
+        // Afficher le nom d'utilisateur
+        const usernameSection = document.getElementById('instagram-username');
+        if (usernameSection) {
+            usernameSection.innerHTML = `<h3>@${username}</h3>`;
+        }
+
+        // Diviser les 18 photos en 3 blocs de 6 photos
+        const block1Photos = media.slice(0, 6);  // Les 6 dernières photos
+        const block2Photos = media.slice(6, 12); // Les 6 suivantes
+        const block3Photos = media.slice(12, 18); // Les 6 plus anciennes
+
+        // Afficher les photos dans le block 1
+        const block1Section = document.getElementById('block-1');
+        if (block1Section) {
+            block1Section.innerHTML = block1Photos.map(photo => `
+                <div class="photo">
+                    <img src="${photo.media_url}" alt="${photo.caption || 'Photo Instagram'}">
+                </div>
+            `).join('');
+        }
+
+        // Afficher les photos dans le block 2
+        const block2Section = document.getElementById('block-2');
+        if (block2Section) {
+            block2Section.innerHTML = block2Photos.map(photo => `
+                <div class="photo">
+                    <img src="${photo.media_url}" alt="${photo.caption || 'Photo Instagram'}">
+                </div>
+            `).join('');
+        }
+
+        // Afficher les photos dans le block 3
+        const block3Section = document.getElementById('block-3');
+        if (block3Section) {
+            block3Section.innerHTML = block3Photos.map(photo => `
+                <div class="photo">
+                    <img src="${photo.media_url}" alt="${photo.caption || 'Photo Instagram'}">
+                </div>
+            `).join('');
+        }
+    }
+    
+    // Appel initial pour récupérer et afficher les données Instagram
+    fetchInstagramData();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const swiper = new Swiper('.manifesto-swiper-container', {
+        slidesPerView: 1, // Nombre de slides visibles en même temps
+        spaceBetween: 10,
+        loop: true, // Boucler en fin de slides
+        autoplay: {
+            delay: 5000, // Temps entre chaque slide en ms
+            disableOnInteraction: false, // L'autoplay ne s'arrête pas au "grab"
+        },
+        grabCursor: true,
+
+    });
+});
+

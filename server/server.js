@@ -1,17 +1,18 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import cors from 'cors';  // Ajoutez cette ligne
+import cors from 'cors';
+import dotenv from 'dotenv';
 
-
+// Charger les variables d'environnement depuis un fichier .env
+dotenv.config();
 
 const app = express();
 
-const clientId = '1077077414006940';
-const clientSecret = '4817228961952b02f53b0818f08ab975';
-const redirectUri = 'https://fronthand.fr/';
+const clientId = process.env.CLIENT_ID || '1077077414006940';
+const clientSecret = process.env.CLIENT_SECRET || '4817228961952b02f53b0818f08ab975';
+const redirectUri = process.env.REDIRECT_URI || 'https://fronthand.fr/';
 
 app.use(cors());
-
 
 app.get('/', (req, res) => {
     // Redirige l'utilisateur vers l'URL d'autorisation Instagram
@@ -23,7 +24,7 @@ app.get('/auth', async (req, res) => {
     const authorizationCode = req.query.code;
 
     if (!authorizationCode) {
-        return res.status(400).send('Le code d\'autorisation est manquant.');
+        return res.status(400).send("Le code d'autorisation est manquant.");
     }
 
     try {
@@ -40,13 +41,19 @@ app.get('/auth', async (req, res) => {
             })
         });
 
-        const tokenText = await tokenResponse.text(); // Récupère la réponse sous forme de texte brut
-        console.log('Réponse brute de l\'API Instagram:', tokenText); // Affiche la réponse brute
+        const tokenText = await tokenResponse.text();
+        console.log('Réponse brute de l\'API Instagram:', tokenText);
 
-        const tokenData = JSON.parse(tokenText); // Tente d'analyser la réponse en JSON
+        let tokenData;
+        try {
+            tokenData = JSON.parse(tokenText);
+        } catch (error) {
+            console.error('Erreur de parsing JSON:', error);
+            return res.status(500).send('Erreur serveur lors du parsing de la réponse.');
+        }
 
-        if (tokenData.error) {
-            return res.status(400).send(`Erreur: ${tokenData.error.message}`);
+        if (tokenData.error_message) {
+            return res.status(400).send(`Erreur: ${tokenData.error_message}`);
         }
 
         const shortTermToken = tokenData.access_token;
@@ -63,7 +70,7 @@ app.get('/auth', async (req, res) => {
             return res.status(400).send(`Erreur: ${longTermTokenData.error.message}`);
         }
 
-        const longTermToken = 'IGQWRPUjdKRzdzaThCeV92dnpjXzJYYWQ0X1dpeFFlTWJKUTdBREc5OFdVMzRvN2lWc1dkS1l4eFJMOVFMaEo3dmt4RlIzOWlLNHRfQjNocFVmRzdxLUwxMGcyLWRRNmtRSEhkTjE2SDN4QQZDZD';
+        const longTermToken = longTermTokenData.access_token;
         console.log('Jeton d\'accès long terme:', longTermToken);
 
         res.send(`Jeton d'accès long terme: ${longTermToken}`);
@@ -73,9 +80,13 @@ app.get('/auth', async (req, res) => {
     }
 });
 
-const longTermToken = 'IGQWRPUjdKRzdzaThCeV92dnpjXzJYYWQ0X1dpeFFlTWJKUTdBREc5OFdVMzRvN2lWc1dkS1l4eFJMOVFMaEo3dmt4RlIzOWlLNHRfQjNocFVmRzdxLUwxMGcyLWRRNmtRSEhkTjE2SDN4QQZDZD';
-
 app.get('/fetch-instagram-data', async (req, res) => {
+    const longTermToken = req.query.access_token; // Utilisation du token passé via la requête
+
+    if (!longTermToken) {
+        return res.status(400).json({ error: 'Token d\'accès manquant.' });
+    }
+
     try {
         const userResponse = await fetch(`https://graph.instagram.com/me?fields=username&access_token=${longTermToken}`);
         const userData = await userResponse.json();
@@ -84,7 +95,7 @@ app.get('/fetch-instagram-data', async (req, res) => {
             return res.status(400).json({ error: userData.error.message });
         }
 
-        const mediaResponse = await fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,timestamp&access_token=${longTermToken}&limit=9`);
+        const mediaResponse = await fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,timestamp&access_token=${longTermToken}&limit=18`);
         const mediaData = await mediaResponse.json();
 
         if (mediaData.error) {
@@ -93,14 +104,15 @@ app.get('/fetch-instagram-data', async (req, res) => {
 
         res.json({
             username: userData.username,
-            media: mediaData.data
+            media: mediaData.data,
+            profile_picture: userData.profile_picture_url, // Ajouter la photo de profil si disponible
+
         });
     } catch (error) {
         console.error('Erreur lors de la récupération des données:', error);
         res.status(500).json({ error: 'Erreur serveur.' });
     }
 });
-
 
 app.listen(3000, () => {
     console.log('Serveur démarré sur http://localhost:3000');

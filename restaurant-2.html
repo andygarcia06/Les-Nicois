@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 </head>
 <body class="manifesto-body">
     <div id="audio-container">
@@ -52,57 +56,122 @@
     <div class="manifesto-ig-container">
         <h2>Suivez-nous sur Instagram</h2>
         <div id="instagram-username"></div>
-        <div id="instagram-feed"></div>
+        <div class="row">
+            <div id="block-1" class="block"></div>
+            <div id="block-2" class="block"></div>
+            <div id="block-3" class="block"></div>
+        </div>
     </div>
-    <section class="manifesto-text-big">
-        <div class="manifesto-text-block manifesto-text-title">
-            <h2 class="manifesto-text">À TABLE</h2>
-        </div>
-        <div class="manifesto-text-block">
-            <h3 class="manifesto-text">ICI C'EST COMME ALLER AU MARCHÉ COURS SALEYA</h3>
-            <img src="./assets/img/1.png" alt="Image 1">
-            <h3 class="manifesto-text">MAIS SANS ÊTRE OBLIGÉ DE PRENDRE UN AIRBNB GÉRÉ PAR UN PARISIEN ET DE SE LEVER LE DIMANCHE MATIN</h3>
-        </div>
-        <div class="manifesto-text-block">
-            <h3 class="manifesto-text">DE TOUTES FAÇONS, ON NE VA PAS SE MENTIR, ON VOUS PRÉFÈRE CHEZ VOUS.</h3>
-            <img src="./assets/img/2.png" alt="Image 2">
-        </div>
-        <div class="manifesto-text-block">
-            <h3 class="manifesto-text">TU TROUVES QU'ON EXAGÈRE?</h3>
-            <h3 class="manifesto-text">NON, ON SAIT, C'EST TOUT. <span class="text-highlight">ICI C'EST MIEUX.</span></h3>
-            <img src="./assets/img/3.png" alt="Image 3">
-            <h3 class="manifesto-text">D'AILLEURS IL Y A QUOI DANS TON ASSIETTE LÀ?</h3>
-        </div>
-        <div class="manifesto-text-block">
-            <h3 class="manifesto-text">ATTENDS, LAISSE-MOI DEVINER: <span class="text-red">TOMATES</span>, <span class="text-yellow">CITRONS</span>, <span class="text-green">OLIVES</span>, <span class="text-brown">POIVRONS</span>, <span class="text-purple">AUBERGINES</span>, <span class="text-violet">FIGUES</span>… JE PASSE SUR LE HOUMOUS DANS LE FRIGO ET LE ROSÉ QUI PATIENTE À CÔTÉ. VOILÀ.</h3>
-        </div>
-        <div class="manifesto-text-block">
-            <h3 class="manifesto-text">EN FAIT, TU NOUS RÊVES TOUTE L'ANNÉE COPAIN.</h3>
-            <h3 class="manifesto-text">ALLEZ ÇA VA, <span class="text-highlight">VIENS.</span></h3>
-            <img src="./assets/img/4.png" alt="Image 4">
-        </div>
-        <div class="manifesto-text-block">
-            <h3 class="manifesto-text">SI TU VEUX TE RAPPELER AU BON SOUVENIR DE TON ÉTÉ TROP COURT</h3>
-            <h3 class="manifesto-text">DES APÉROS IMPROVISÉS, ET DES SOIRÉES ARROSÉES, TU SAIS À QUI T'ADRESSER.</h3>
-            <img src="./assets/img/5.png" alt="Image 5">
-        </div>
-        <div class="manifesto-text-block">
-            <h3 class="manifesto-text">ON VOUS LAISSE LES POLITESSES.</h3>
-            <h3 class="manifesto-text">NOUS ON PRÉFÈRE <span class="text-highlight">LA GÉNÉROSITÉ.</span></h3>
-            <img src="./assets/img/6.png" alt="Image 6">
-        </div>
-        <div class="manifesto-text-block">
-            <h3 class="manifesto-text">D'AILLEURS ON N'OBLIGE PERSONNE À SE RESSERVIR UNE 3E FOIS.</h3>
-            <img src="./assets/img/7.png" alt="Image 7">
-        </div>
-        <div class="manifesto-text-block">
-            <h3 class="manifesto-text">ALORS SI TU VEUX LE SOLEIL ET LES CIGALES</h3>
-            <h3 class="manifesto-text">PRENDS UN BILLET DE TRAIN.</h3>
-            <img src="./assets/img/8.png" alt="Image 8">
-        </div>
-        <div class="manifesto-text-block">
-            <h3 class="manifesto-text">SINON IL Y A</h3>
-            <img id="logo-manifesto" src="./assets/img/logo/Logo-Les-Niçois.png" alt="Image 9">
+    
+    <section class="manifesto-swiper-container swiper">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="manifesto-swiper-slide swiper-slide">
+                <div class="manifesto-swiper-slide-container">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="./assets/img/manifesto/mobile/1.png">
+                        <img src="./assets/img/manifesto/1.jpg" alt="Image 1">
+                    </picture>
+                </div>
+            </div>
+    
+            <!-- Slide 2 -->
+            <div class="manifesto-swiper-slide swiper-slide">
+                <div class="manifesto-swiper-slide-container">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="./assets/img/manifesto/mobile/2.png">
+                        <img src="./assets/img/manifesto/2.jpg" alt="Image 2">
+                    </picture>
+                </div>
+            </div>
+    
+            <!-- Slide 3 -->
+            <div class="manifesto-swiper-slide swiper-slide">
+                <div class="manifesto-swiper-slide-container">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="./assets/img/manifesto/mobile/3.png">
+                        <img src="./assets/img/manifesto/3.jpg" alt="Image 3">
+                    </picture>
+                </div>
+            </div>
+    
+            <!-- Slide 4 -->
+            <div class="manifesto-swiper-slide swiper-slide">
+                <div class="manifesto-swiper-slide-container">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="./assets/img/manifesto/mobile/4.png">
+                        <img src="./assets/img/manifesto/4.jpg" alt="Image 4">
+                    </picture>
+                </div>
+            </div>
+    
+            <!-- Slide 5 -->
+            <div class="manifesto-swiper-slide swiper-slide">
+                <div class="manifesto-swiper-slide-container">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="./assets/img/manifesto/mobile/5.png">
+                        <img src="./assets/img/manifesto/5.jpg" alt="Image 5">
+                    </picture>
+                </div>
+            </div>
+    
+            <!-- Slide 6 -->
+            <div class="manifesto-swiper-slide swiper-slide">
+                <div class="manifesto-swiper-slide-container">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="./assets/img/manifesto/mobile/6.png">
+                        <img src="./assets/img/manifesto/6.jpg" alt="Image 6">
+                    </picture>
+                </div>
+            </div>
+    
+            <!-- Slide 7 -->
+            <div class="manifesto-swiper-slide swiper-slide">
+                <div class="manifesto-swiper-slide-container">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="./assets/img/manifesto/mobile/7.png">
+                        <img src="./assets/img/manifesto/7.jpg" alt="Image 7">
+                    </picture>
+                </div>
+            </div>
+    
+            <!-- Slide 8 -->
+            <div class="manifesto-swiper-slide swiper-slide">
+                <div class="manifesto-swiper-slide-container">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="./assets/img/manifesto/mobile/8.png">
+                        <img src="./assets/img/manifesto/8.jpg" alt="Image 8">
+                    </picture>
+                </div>
+            </div>
+    
+            <!-- Slide 9 (Desktop/Tablette uniquement) -->
+            <div class="manifesto-swiper-slide swiper-slide hide-on-mobile">
+                <div class="manifesto-swiper-slide-container manifesto-swiper-slide-container-mobile">
+                    <img src="./assets/img/manifesto/9.jpg" alt="Image 9">
+                </div>
+            </div>
+    
+            <!-- Slide 10 (Desktop/Tablette uniquement) -->
+            <div class="manifesto-swiper-slide swiper-slide hide-on-mobile">
+                <div class="manifesto-swiper-slide-container manifesto-swiper-slide-container-mobile">
+                    <img src="./assets/img/manifesto/10.jpg" alt="Image 10">
+                </div>
+            </div>
+    
+            <!-- Slide 11 (Desktop/Tablette uniquement) -->
+            <div class="manifesto-swiper-slide swiper-slide hide-on-mobile">
+                <div class="manifesto-swiper-slide-container manifesto-swiper-slide-container-mobile">
+                    <img src="./assets/img/manifesto/11.jpg" alt="Image 11">
+                </div>
+            </div>
+    
+            <!-- Slide 12 (Desktop/Tablette uniquement) -->
+            <div class="manifesto-swiper-slide swiper-slide hide-on-mobile">
+                <div class="manifesto-swiper-slide-container manifesto-swiper-slide-container-mobile">
+                    <img src="./assets/img/manifesto/12.jpg" alt="Image 12">
+                </div>
+            </div>
         </div>
     </section>
     

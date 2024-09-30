@@ -299,23 +299,23 @@ body.restaurant-body {
     height: 50vh; /* Ajuster la hauteur selon vos besoins */
 }
 
-.swiper-container {
-    width: 100%;
-    height: 100%;
-}
+// .swiper-container {
+//     width: 100%;
+//     height: 100%;
+// }
 
-.swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000; /* Pour montrer une couleur de fond pendant le chargement des images */
-}
+// .swiper-slide {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background: #000; /* Pour montrer une couleur de fond pendant le chargement des images */
+// }
 
-.swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+// .swiper-slide img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+// }
 
 .carousel-button {
     position: absolute;
@@ -1067,6 +1067,9 @@ body.shop-body {
 
 // POPUP
 
+/* Popup styles */
+
+
 .popup {
     display: none; /* Masqué par défaut */
     position: fixed;
@@ -1082,9 +1085,8 @@ body.shop-body {
 .popup-content {
     background-color: rgba(0, 0, 0, 0);
     margin: auto;
-    padding: 20px;
     border: 1px solid #888;
-    width: 30%;
+    width: 100%;
     height: 100%;
     border: none;
     z-index: 2000;
@@ -1099,6 +1101,8 @@ body.shop-body {
 .close-popup {
     color: white;
     float: right;
+    position: relative;
+    right: 20px;
     font-size: 38px;
     font-weight: bold;
 
@@ -1110,287 +1114,108 @@ body.shop-body {
     }
 }
 
-.swiper-controller {
-
-    .swiper-button-prev,
-    .swiper-button-next {
-        position: absolute;
-        z-index: 1000;
-        width: 30px;  // Réduire la taille des flèches
-        height: 30px;
-        background-color: black;  // Fond noir
-        color: white;  // Flèches blanches
-        border-radius: 4px;  // Optionnel: coins légèrement arrondis
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 6px;  // Ajuster la taille des flèches
-    }
-
-    .swiper-button-prev {
-        left: 10px;  // Ajuster la position du bouton à gauche
-    }
-
-    .swiper-button-next {
-        right: 10px;  // Ajuster la position du bouton à droite
-    }
-
-    .swiper-button-prev::after {
-        content: '\276E';  // Flèche gauche
-        font-size: 16px;
-    }
-
-    .swiper-button-next::after {
-        content: '\276F';  // Flèche droite
-        font-size: 16px;
-    }
-
-}
-
-   // Tablettes
-   @media (max-width: 1024px) {
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 25px;  // Réduire la taille du carré
-        height: 25px;
-        font-size: 14px;  // Réduire la taille des flèches
-    }
-
-    .swiper-button-prev {
-        left: -10px;  // Décalage de 10px à gauche
-    }
-
-    .swiper-button-next {
-        right: -10px;  // Décalage de 10px à droite
-    }
-}
-
-// Smartphones
-@media (max-width: 768px) {
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 20px !important;  // Réduire encore la taille du carré
-        height: 20px !important;
-        font-size: 12px;  // Réduire la taille des flèches
-    }
-
-    .swiper-button-prev {
-        left: -10px;  // Décalage de 10px à gauche
-    }
-
-    .swiper-button-next {
-        right: -10px;  // Décalage de 10px à droite
-    }
-}
-
-// Très petits écrans
-@media (max-width: 480px) {
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 15px !important;  // Réduire encore la taille du carré
-        height: 15px !important;
-        font-size: px;  // Réduire la taille des flèches
-    }
-
-    .swiper-button-prev {
-        left: -10px;  // Décalage de 10px à gauche
-    }
-
-    .swiper-button-next {
-        right: -10px;  // Décalage de 10px à droite
-    }
-}
 
 
 // Carte.html
-
-.body-cart .swiper-container {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0);
-    // overflow-y: scroll;
-}
-
-.body-cart .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    box-sizing: border-box;
-    background-color: white;
-    padding: 0 80px;
-    overflow: scroll;
-
-    @media (max-width: 768px) {
-        padding: 0 40px;
+/* Scope everything inside .body-cart */
+.body-cart {
+  
+    /* Swiper container styles */
+    .swiper-container {
+      width: 100%;
+      height: 100vh; /* Full viewport height */
+      padding: 0;
+      margin: 0;
     }
-
-    @media (max-width: 480px) {
-        padding: 0 20px;
+  
+    /* Swiper slide styles */
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%; /* Ensure the swiper slides take full height and width */
+      box-sizing: border-box; /* Avoid extra padding affecting the width */
     }
-}
-
-
-.menu-title,
-.boissons-title,
-.vins-title {
-    font-size: 4rem !important;
-    margin-bottom: -5px;
-    text-align: left !important;
-    width: 100%;
-    font-weight: bold;
-    font-family: 'JeanLuc Thin';
-
-    @media (max-width: 768px) {
-        font-size: 1.5rem;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 1rem;
-    }
-}
-
-.vins-title {
-    line-height: 65px;
-}
-
-
-.swiper-slide h3 {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-    text-align: left;
-    font-family: 'JeanLuc Thin';
-    width: 100%;
-
-    @media (max-width: 768px) {
-        font-size: 1.8rem;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 1.4rem;
-    }
-}
-
-.menu-subtitle,
-.boissons-subtitle,
-.vins-subtitle {
-    font-size: 0.8rem;
-    margin-bottom: 20px;
-    display: flex;
-    width: 100%;
-
-    @media (max-width: 768px) {
-        font-size: 0.7rem;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 0.6rem;
-    }
-}
-
-.menu-item,
-.boissons-item,
-.vins-item {
-    font-size: 0.8rem;
-    margin-bottom: 3px;
-    border-bottom: 1px solid black;
-    display: flex;
-    justify-content: space-around;
-    width: 90%;
-
-    @media (max-width: 768px) {
-        font-size: 0.7rem;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 0.6rem;
-    }
-}
-
-#swip-1 {
-    background-color: $carte-pink-background;
-    overflow: hidden;
-}
-
-#swip-2 {
-    background-color: $carte-yellow-background;
-    height: 140vh !important;
-
-    @media (max-width: 768px) {
-        height: auto;
-    }
-
-    @media (max-width: 480px) {
-        height: auto;
-    }
-}
-
-#swip-3 {
-    background-color: $carte-blue-background;
-    height: 170vh !important;
-
-    @media (max-width: 768px) {
-        height: auto;
-    }
-
-    @media (max-width: 480px) {
-        height: auto;
-    }
-}
-
-.mini-title {
-    width: 100%;
-    text-align: center;
-    margin-top: 30px;
-
-    .mini-title-h1 {
-        font-family: $title-font;
-        font-size: 1rem !important;
-
-        .mini-highlight {
-            font-size: 3rem;
-            position: relative;
-            top: 20px;
+  
+    .swiper-slide img {
+        width: 90%; /* 90% width on desktop */
+        height: 100%;
+        object-fit: cover; /* Ensures the image covers the entire slide */
+        display: block; /* Makes sure the margin works */
+        margin: 0 auto; /* Centers the image horizontally */
+      }
+      
+      /* Responsive Styling */
+      @media (max-width: 768px) {
+        .swiper-slide img {
+          height: 90vh;  
+          width: 90%; /* Reduce the size to 60% on mobile */
+          object-fit: contain; /* Keep the entire image in view without cutting */
+          margin: 0 auto; /* Centers the image horizontally */
         }
+      }
+  
+    /* Navigation Buttons for Swiper */
+    .swiper-controller {
+  
+      .swiper-button-prev,
+      .swiper-button-next {
+        position: absolute;
+        z-index: 1001;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 18px;
+      }
+  
+      .swiper-button-prev {
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+  
+      .swiper-button-next {
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+  
+      .swiper-button-prev::after {
+        content: '<'; /* Left arrow */
+      }
+  
+      .swiper-button-next::after {
+        content: '>'; /* Right arrow */
+      }
     }
-
-    .mini-sub-title {
-        font-size: 50%;
+  
+    /* Additional responsive styles for smaller buttons */
+    @media (max-width: 768px) {
+      .swiper-button-prev,
+      .swiper-button-next {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+      }
     }
-}
-
-.price {
-    margin-left: auto;
-}
-
-/* Responsive styling */
-@media (max-width: 768px) {
-
-    .popup-content {
-        width: 100%;
+  
+    @media (max-width: 480px) {
+      .swiper-button-prev,
+      .swiper-button-next {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+      }
     }
-    .swiper-container {
-        width: 100%;
-    }
+  }
+  
 
-    .swiper-slide {
-        padding: 0 20px;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .popup-content {
-        width: 100%;
-    }
-    .swiper-container {
-        width: 100% !important;
-        margin: auto; /* Le swiper prend 90% de la largeur en mobile */
-    }
-
-    .swiper-slide {
-        padding: 0 20px;
-    }
-}
 
 // Restaurant-2.html
 
@@ -1421,7 +1246,7 @@ body.shop-body {
     height: 50%;
     background-size: cover;
     background-position: center;
-    transition: opacity 1s ease-in-out; /* Transition pour le fondu */
+    transition: background-image 1s ease-in-out; 
 }
 
 .manifesto-content {
@@ -1481,55 +1306,46 @@ body.shop-body {
     color: black;
 }
 
-.manifesto-ig-container{
-    // margin-top: 40px !important;
-    margin: auto;
+.manifesto-ig-container {
+    text-align: center;
+    margin: 20px 0;
     background-color: #000;
-    padding: 10px;
+    color: white;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
 
     h2{
-        text-align: center;
-        color: white;
-        text-transform: uppercase;
         font-family: $title-font;
-        font-size: 300%;
+        font-size: 150% !important;
     }
+}
 
-    #instagram-username {
-        font-size: 14px;
-        font-weight: bold;
-        text-align: center;
-        margin: 10px 10px;
-        color: white;
-        font-family: $title-font;
-    }
 
-    #instagram-feed {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 0 10px;
-    }
+#instagram-username h3 {
+    margin-bottom: 20px;
+    font-family: $title-font;
+}
 
-    .instagram-image {
-        width: 100%;
-        height: 0;
-        padding-bottom: 100%; /* Carré */
-        object-fit: cover;
-        position: relative;
-    }
+.row {
+    display: flex;
+    justify-content: space-around;
+}
 
-    .instagram-image img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.block {
+    display: flex;
+    flex-wrap: wrap;
+    width: 30%; /* Chaque bloc occupe environ 1/3 de la ligne */
+}
 
+.photo {
+    width: 33.33%; /* 3 photos par ligne */
+    padding: 5px;
+}
+
+.photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
 
 .manifesto-text-big {
@@ -1565,6 +1381,69 @@ body.shop-body {
         }
     }
 }
+
+/* Style de la section Swiper */
+/* Style de la section Swiper */
+.manifesto-swiper-container {
+    width: 100%;
+    height: 100vh; /* Hauteur égale à 100% du viewport */
+    overflow: hidden; /* Masquer les parties hors viewport */
+}
+
+/* Chaque slide occupe 100% de la largeur et hauteur du container */
+.manifesto-swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    background-color: white;
+
+    h2, h3, h4, h5 {
+        font-family: $title-font;
+        font-size: 600% !important;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}
+
+.manifesto-swiper-slide-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+
+.manifesto-swiper-slide-container-mobile {
+    img{
+        width: 60%;
+        height: 60%;
+        object-fit: cover; 
+    }
+}
+
+
+/* Transition fluide pour les slides */
+.swiper-wrapper {
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Masquer les slides 9 à 12 sur mobile */
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+}
+
+
 
 // Adding colors to match the image
 
