@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const accessToken = 'IGQWRNWFhKMXZAfdVN6amhvSWJhYzNUOFM5emhsOE0zRHY4N1ROMVB2UkNPYWdQTlVxeTFnWEd6UEIwamdBRnhpMUdnYVYtM3l0TVpmb1NnclhCdGJrZAzFsbWFSYmlHdHRsb1ZAoanU2LVU4ZAwZDZD'; // Remplacez par votre vrai token
+    const accessToken = 'IGQWRQUjlVZA1ltX0lZAVmhSQ0NqUmxkcThxWEtvWEhuS2Q4YjllTGREd2Q4ZA2x0YTd4aTdEOGlRSjNuU3lHbmZA2ZAjAtVVF0dGpKOGRuS0VmdXRrcFhqeDJ1bmJGNGw0b2NBX0tnLUI0YnJidwZDZD'; // Remplacez par votre vrai token
 
     async function fetchInstagramData() {
         try {

@@ -61,7 +61,7 @@ a{
 .cedille::after {
     content: '';
     position: absolute;
-    bottom: 2px !important;
+    bottom: 1px !important;
     left: 50%;
     transform: translateX(-50%); /* Centre le trait sous la lettre "C" */
     bottom: -3px; /* Ajustez cette valeur pour rapprocher ou éloigner le trait de la lettre */
@@ -86,6 +86,11 @@ a{
 
 #preloader .title-container {
     transform: scale(2);
+}
+
+#preloader h1{
+    font-family: 'JeanLuc Thin';
+    font-size: 450%;
 }
 
 /* Styles pour la page d'accueil */
@@ -126,7 +131,7 @@ body.index-body {
 /* Style des sections */
 .index-section {
     position: relative;
-    margin:0 2px;
+    margin: 0 2px;
     width: 33%; /* Chaque section prend un tiers de la largeur de l'écran */
     height: 100vh; /* La hauteur est égale à la hauteur de l'écran */
     background-size: cover;
@@ -137,6 +142,29 @@ body.index-body {
     justify-content: center;
     align-items: center;
     float: left; /* Les sections sont flottées pour être côte à côte horizontalement */
+    transition: background-color 0.5s ease; /* Transition de la couleur de fond */
+    
+    /* Pseudo-élément pour l'animation du fond */
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%; /* Départ à 0% */
+        height: 100%;
+        background-color: white; /* Fond blanc qui va se dérouler de gauche à droite */
+        transition: width 0.5s ease; /* Transition pour faire passer la largeur de 0% à 100% */
+        z-index: 0; /* Derrière le contenu */
+    }
+
+    /* Animation au hover */
+    &:hover:before {
+        width: 100%; /* Le fond blanc prend toute la largeur au survol */
+    }
+    /* Animation au survol */
+    &:hover {
+        background-color: white; /* La section devient blanche au survol */
+    }
 }
 
 #index-section-1 {
@@ -153,50 +181,30 @@ body.index-body {
 }
 
 /* Contenu des sections invisible par défaut */
-.index-section .index-content {
+.index-content {
     position: relative;
     z-index: 1;
     text-align: center;
-    color: black;
-    -webkit-text-stroke: 1px white;
+    color: white; /* Texte blanc par défaut */
     font-size: 5rem;
     font-family: 'JeanLuc Thin', Arial, sans-serif;
     opacity: 0; /* Contenu invisible par défaut */
-    transition: opacity 1s ease-in-out; /* Transition pour faire apparaître le contenu */
+    transition: opacity 0.5s ease-in-out, color 0.5s ease-in-out; /* Transition pour l'apparition du contenu et changement de couleur */
 }
 
-/* Apparition du contenu au survol */
+/* Apparition du contenu et changement de couleur au survol */
 .index-section:hover .index-content {
     opacity: 1; /* Le contenu devient visible au survol */
+    color: black; /* Le texte devient noir quand le fond est blanc */
 }
 
 /* Responsive Media Query pour les tablettes */
 @media (max-width: 768px) {
 
-    .title-container{
+    .title-container {
         transform: scale(0.9) !important;
     }
 
-    .cedille::after{
-        height: 4px;
-        width: 12px;
-    }
-    .index-header {
-        padding: 15px;
-        height: 20vh;
-    }
-
-    .index-logo {
-        font-size: 3rem;
-        top: -80px;  /* Ajustement de la position en fonction de la taille d'écran plus petite */
-
-        .index-highlight {
-            font-size: 7rem;
-            top: 40px;  /* Ajustement de la position relative de .index-highlight */
-        }
-    }
-
-    /* Mise en page pour les tablettes */
     .index-section {
         width: 100%; /* Chaque section prend toute la largeur de l'écran */
         height: 33vh; /* La hauteur est un tiers de la hauteur de l'écran */
@@ -216,8 +224,9 @@ body.index-body {
     #index-section-3 {
         background-image: url('../img/background/section-3.jpg'); /* Image pour la section 3 en mobile */
     }
-    .index-section .index-content{
-        font-size: 4rem;
+
+    .index-content {
+        font-size: 4rem; /* Ajuster la taille du texte pour les tablettes */
     }
 }
 
@@ -229,14 +238,16 @@ body.index-body {
 
     .index-logo {
         font-size: 2.5rem;
-        top: -60px;  /* Ajustement supplémentaire pour les écrans très petits */
+        top: -60px; /* Ajustement supplémentaire pour les écrans très petits */
 
         .index-highlight {
             font-size: 5rem;
-            top: 30px;  /* Ajustement supplémentaire pour la position relative de .index-highlight */
+            top: 30px; /* Ajustement supplémentaire pour la position relative de .index-highlight */
         }
     }
 }
+
+
 
 /* Styles pour restaurant.html */
 body.restaurant-body {
@@ -433,26 +444,7 @@ body.restaurant-body {
     }
 }
 
-/* Initial Restaurant Section */
-.restaurant-initial-content {
-    background-color: $background-green;
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-    color: white;
-    height: 80vh;
 
-    h1, h2, p {
-        margin: 10px 0;
-    }
-
-
-    h2 {
-        font-size: 7vw;
-        font-family: $title-font;
-    }
-
-}
 
 /* Instagram Section */
 .instagram-section {
@@ -714,264 +706,7 @@ $reservation-background: #bb59c4;
 $reservation-text-color: #fff;
 $reservation-button-color: #000;
 
-// Styles pour reservation.html
-body.reservation-body {
-    background-color: $reservation-background;
-    font-family: $primary-font;
-    color: $reservation-text-color;
-    overflow: hidden;
-}
 
-.reservation-section {
-    background-color: $reservation-background;
-    text-align: center;
-    padding: 140px;
-    border-radius: 15px;
-
-    @media (max-width: 768px) {
-        padding: 100px 20px;
-    }
-
-    @media (max-width: 480px) {
-        padding: 80px 10px;
-    }
-}
-
-.title-container{
-    width: 100%;
-    text-align: center;
-}
-
-.reservation-section{
-    margin-top: -100px !important;
-}
-
-.title {
-    font-family: $title-font;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    position: relative;
-    bottom: 30px;
-
-    .highlight {
-        font-weight: bold;
-        font-size: 7rem;
-        position: relative;
-        top: 45px;
-
-        @media (max-width: 768px) {
-            font-size: 6rem;
-            top: 35px;
-        }
-
-        @media (max-width: 480px) {
-            font-size: 4rem;
-            top: 25px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        font-size: 3rem !important;
-        bottom: 20px;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 2rem !important;
-        bottom: 4px !important;
-    }
-}
-
-.title, .sub-title {
-    color: black;
-}
-
-// Styles pour les formulaires de réservation
-.reservation-form-container {
-    background-color: #fff;
-    border-radius: 15px;
-    padding: 20px;
-    height: 60vh;
-    margin: 20px 100px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-    @media (max-width: 768px) {
-        margin: 20px 50px;
-        height: auto;
-    }
-
-    @media (max-width: 480px) {
-        margin: 20px 20px;
-        padding: 15px;
-    }
-}
-
-.reservation-form h2 {
-    font-family: $title-font;
-    color: $reservation-button-color;
-
-    @media (max-width: 768px) {
-        font-size: 1.5rem;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 1.2rem;
-    }
-}
-
-.reservation-form p {
-    font-family: $primary-font;
-    color: $reservation-button-color;
-
-    @media (max-width: 768px) {
-        font-size: 1rem;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 0.8rem;
-    }
-}
-
-.form-group {
-    margin-top: 45px;
-    margin-bottom: 15px;
-    position: relative;
-
-    @media (max-width: 768px) {
-        margin-top: 30px;
-    }
-
-    @media (max-width: 480px) {
-        margin-top: 20px;
-    }
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-family: $title-font;
-    color: $reservation-button-color;
-
-    @media (max-width: 768px) {
-        font-size: 1rem;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 0.8rem;
-    }
-}
-
-select {
-    width: 100%;
-    padding: 10px 5px;
-    font-family: $primary-font;
-    font-size: 1rem;
-    color: $reservation-button-color;
-    background-color: transparent; /* Fond transparent */
-    border: none;
-    border-bottom: 2px solid $reservation-button-color; /* Ligne du bas uniquement */
-    border-radius: 0; /* Supprimer les coins arrondis */
-    appearance: none; /* Supprime le style par défaut */
-    -webkit-appearance: none; /* Pour Safari */
-    -moz-appearance: none; /* Pour Firefox */
-    background-image: none; /* Supprimer l'image de la flèche par défaut */
-
-    &:focus {
-        outline: none;
-        border-bottom-color: darken($reservation-button-color, 10%);
-    }
-
-    &:hover {
-        border-bottom-color: lighten($reservation-button-color, 10%);
-    }
-
-    @media (max-width: 768px) {
-        font-size: 0.9rem;
-        padding: 8px 4px;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 0.8rem;
-        padding: 6px 3px;
-    }
-}
-
-// Style pour ajouter une flèche personnalisée
-.form-group::after {
-    content: '▼';
-    font-size: 0.75rem;
-    color: $reservation-button-color;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-
-    @media (max-width: 768px) {
-        font-size: 0.6rem;
-        right: 8px;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 0.5rem;
-        right: 5px;
-    }
-}
-
-.reservation-button {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background-color: $reservation-button-color;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    font-family: $title-font;
-
-    &:hover {
-        background-color: lighten($reservation-button-color, 10%);
-    }
-
-    @media (max-width: 768px) {
-        padding: 12px;
-        font-size: 0.9rem;
-    }
-
-    @media (max-width: 480px) {
-        padding: 10px;
-        font-size: 0.8rem;
-    }
-}
-
-.reservation-back-button-container {
-    margin: auto;
-    text-align: center;
-}
-
-.reservation-back-button {
-    background-color: $reservation-button-color;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-    font-family: $title-font;
-    width: 12%;
-    height: 4vh;
-
-    &:hover {
-        background-color: lighten($reservation-button-color, 10%);
-    }
-
-    @media (max-width: 768px) {
-        width: 20%;
-        height: 5vh;
-    }
-
-    @media (max-width: 480px) {
-        width: 30%;
-        height: 6vh;
-    }
-}
 
 
 // shop.html
@@ -1105,6 +840,7 @@ body.shop-body {
     right: 20px;
     font-size: 38px;
     font-weight: bold;
+    z-index: 20000;
 
     &:hover,
     &:focus {
@@ -1139,8 +875,8 @@ body.shop-body {
     }
   
     .swiper-slide img {
-        width: 90%; /* 90% width on desktop */
-        height: 100%;
+        width: 100%; /* 90% width on desktop */
+        height: 90%;
         object-fit: cover; /* Ensures the image covers the entire slide */
         display: block; /* Makes sure the margin works */
         margin: 0 auto; /* Centers the image horizontally */
@@ -1219,77 +955,136 @@ body.shop-body {
 
 // Restaurant-2.html
 
+// Corps principal de la page Manifesto
 .manifesto-body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #fff;
-    overflow: scroll;
+    overflow-y: scroll; // Activer le scroll vertical
+    scroll-snap-type: y mandatory; // Défilement vertical obligatoire
+    scroll-behavior: smooth; // Transition douce lors du défilement}
 }
 
+// Section principale (chaque section occupe 100% de la hauteur de l'écran)
+.manifesto-body section {
+    height: 100vh !important;
+    scroll-snap-align: start; // Permet d'aligner chaque section en début de page
+    width: 100%;
+    overflow: hidden; // Empêcher le scroll interne
+}
+
+// Conteneur des sections
 .manifesto-sections-container {
     display: flex;
     margin-top: 6vh;
     width: 100% !important;
-    height: 100vh; 
+    height: 100vh;
     font-family: $title-font;
+    margin-bottom: -3vh;
+    overflow: hidden; // Désactiver le scroll interne
 }
 
+// Chaque section occupe 100% de la hauteur et 33% de la largeur en écran large
 .manifesto-section {
     width: 33.33%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100vh;
+    margin-bottom: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+// Style des images dans chaque section (prend toute la largeur et la hauteur)
 .manifesto-image {
     width: 100%;
-    height: 50%;
+    height: 100%;
     background-size: cover;
     background-position: center;
-    transition: background-image 1s ease-in-out; 
 }
 
+// Contenu des sections
 .manifesto-content {
-    height: 50%;
+    height: 50%; // Prend la moitié de la section
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     background-color: #fff;
-    padding: 20px;
-}
-
-#manifesto-main-content {
-    display: flex;
-    flex-direction: column;
-
-    h1 {
-        font-size: 4rem;
-    }
-
-    .manifesto-subtitle{
-        margin-top: -40px;
-    }
-}
-
-.manifesto-title {
-    font-size: 2.5rem;
+    padding: 0;
     margin: 0;
-    text-transform: uppercase;
+    box-sizing: border-box;
 }
 
-.manifesto-subtitle {
-    font-size: 1.5rem;
-    margin-top: 10px;
+// Images dans le contenu des sections
+.manifesto-content img {
+    max-width: 100%; // Assurer que les images sont responsives
+    height: auto;
+    opacity: 1;
 }
 
-.manifesto-buttons {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    background-color: #fff;
+// Effet hover pour rendre le contenu plus visible
+.manifesto-section:hover .manifesto-content {
+    background-color: white; // Fond blanc au hover
 }
 
+// Chargement d'images spécifiques à chaque section
+#index-section-1 .manifesto-image {
+    background-image: url('../img/background/section-1.jpg');
+}
+
+#index-section-2 .manifesto-image {
+    background-image: url('../img/background/section-2.jpg');
+}
+
+#index-section-3 .manifesto-image {
+    background-image: url('../img/background/section-3.jpg');
+}
+
+// Remplacement des images par les carrés fournis
+#index-section-1 .manifesto-content img {
+    content: url('./assets/image/square/resto-square.png');
+}
+
+#index-section-2 .manifesto-content img {
+    content: url('./assets/image/square/les-nicois-square.png');
+}
+
+#index-section-3 .manifesto-content img {
+    content: url('./assets/image/square/date-square.png');
+}
+
+// Media Queries pour tablettes
+@media (max-width: 768px) {
+    .manifesto-section {
+        width: 100%; // Chaque section prend toute la largeur
+        height: 30vh; // Hauteur de 30vh sur les tablettes
+        margin: 2px 0;
+    }
+
+    .manifesto-content img {
+        max-width: 130%;
+        height: 30vh;
+    }
+}
+
+// Media Queries pour les petits écrans
+@media (max-width: 480px) {
+    .manifesto-section {
+        height: 30vh;
+    }
+
+    .manifesto-content img {
+        max-width: 100%;
+    }
+
+    .manifesto-image {
+        height: 30vh;
+    }
+}
+
+// Boutons pour les options (carte, réservation)
 .restaurant-button {
     background-color: #000;
     color: #fff;
@@ -1306,6 +1101,7 @@ body.shop-body {
     color: black;
 }
 
+// Conteneur Instagram
 .manifesto-ig-container {
     text-align: center;
     margin: 20px 0;
@@ -1314,13 +1110,13 @@ body.shop-body {
     padding-top: 5vh;
     padding-bottom: 5vh;
 
-    h2{
+    h2 {
         font-family: $title-font;
         font-size: 150% !important;
     }
 }
 
-
+// Styles des sections Instagram
 #instagram-username h3 {
     margin-bottom: 20px;
     font-family: $title-font;
@@ -1334,11 +1130,11 @@ body.shop-body {
 .block {
     display: flex;
     flex-wrap: wrap;
-    width: 30%; /* Chaque bloc occupe environ 1/3 de la ligne */
+    width: 30%; // Chaque bloc occupe environ 1/3 de la ligne
 }
 
 .photo {
-    width: 33.33%; /* 3 photos par ligne */
+    width: 33.33%; // 3 photos par ligne
     padding: 5px;
 }
 
@@ -1348,20 +1144,23 @@ body.shop-body {
     border-radius: 5px;
 }
 
+// Texte Manifesto
 .manifesto-text-big {
     padding: 20px;
     background-color: #fff;
-    .manifesto-text-title{
+
+    .manifesto-text-title {
         height: 60vh;
         display: flex;
         align-items: center;
         text-align: center;
         justify-content: center;
-        h2{
+
+        h2 {
             font-size: 5rem !important;
         }
     }
-    
+
     .manifesto-text-block {
         margin-bottom: 30px;
         text-align: center;
@@ -1382,15 +1181,14 @@ body.shop-body {
     }
 }
 
-/* Style de la section Swiper */
-/* Style de la section Swiper */
+// Style de la section Swiper
 .manifesto-swiper-container {
     width: 100%;
-    height: 100vh; /* Hauteur égale à 100% du viewport */
-    overflow: hidden; /* Masquer les parties hors viewport */
+    height: 100vh;
+    overflow: hidden; // Masquer les parties hors viewport
 }
 
-/* Chaque slide occupe 100% de la largeur et hauteur du container */
+// Chaque slide occupe 100% de la largeur et hauteur
 .manifesto-swiper-slide {
     display: flex;
     justify-content: center;
@@ -1406,6 +1204,7 @@ body.shop-body {
     }
 }
 
+// Style des images dans les slides
 .manifesto-swiper-slide-container {
     display: flex;
     flex-direction: row;
@@ -1414,165 +1213,290 @@ body.shop-body {
     position: relative;
     height: 100%;
 
-    img{
+    img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 }
 
-
 .manifesto-swiper-slide-container-mobile {
-    img{
-        width: 60%;
-        height: 60%;
-        object-fit: cover; 
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 }
 
-
-/* Transition fluide pour les slides */
+// Transition fluide pour les slides
 .swiper-wrapper {
     transition: transform 0.5s ease-in-out;
 }
 
-/* Masquer les slides 9 à 12 sur mobile */
+// Masquer les slides 9 à 12 sur mobile
 @media (max-width: 768px) {
     .hide-on-mobile {
         display: none !important;
     }
 }
 
-
-
-// Adding colors to match the image
-
+// Couleurs associées aux images
 .text-red {
-    color: #FF0000; // Red for "TOMATES"
+    color: #FF0000;
 }
 
 .text-yellow {
-    color: #FFD700; // Yellow for "CITRONS"
+    color: #FFD700;
 }
 
 .text-green {
-    color: #228B22; // Green for "OLIVES"
+    color: #228B22;
 }
 
 .text-brown {
-    color: #8B4513; // Brown for "POIVRONS"
+    color: #8B4513;
 }
 
 .text-purple {
-    color: #800080; // Purple for "AUBERGINES"
+    color: #800080;
 }
 
 .text-violet {
-    color: #9400D3; // Violet for "FIGUES"
+    color: #9400D3;
 }
 
 .text-highlight {
-    color: #000; // Default black, can change if needed
+    color: #000; // Noir par défaut
 }
 
-.manifesto-text-big {
-    padding: 20px;
-    background-color: #fff;
-    
-    .manifesto-text-block {
-        margin-bottom: 30px;
-        text-align: center;
-
-        .manifesto-text {
-            font-family: $title-font;
-            font-size: 4rem;
-            text-transform: uppercase;
-            line-height: 1.2;
-            margin: 0 0 20px 0;
-
-            // Ensuring the color is inherited except for spans
-            color: inherit;
-
-            span {
-                font-weight: bold; // Making the colored spans bold for emphasis
-            }
-        }
-
-        img {
-            width: 50%;
-            margin: 20px 0;
-            display: block;
-        }
-    }
-}
-
-#logo-manifesto{
+#logo-manifesto {
     transform: scale(0.4);
     margin: auto;
 }
 
-
+// Media Queries pour les petits écrans
 @media (max-width: 768px) {
-
-    h1{
+    h1 {
         font-size: 2.3rem !important;
     }
+
     .manifesto-sections-container {
-        display: block; /* Permet de réorganiser les sections en bloc */
+        display: block;
         flex-direction: column;
         height: 100vh;
         font-size: 50%;
     }
 
-    .manifesto-section{
+    .manifesto-section {
         width: 100%;
         display: flex;
         flex-direction: row;
         height: 33.33%;
     }
 
-
-    .manifesto-content{
+    .manifesto-content {
         width: 50%;
         height: 33.33vh;
-        h1, h2{
+
+        h1, h2 {
             font-size: 220%;
         }
     }
 
-    .manifesto-image{
+    .manifesto-image {
         width: 50%;
         height: 33.33vh;
     }
 
-    .manifesto-section-middle {
-        .manifesto-subtitle{
-            font-size: 1rem !important;
-            margin-top: -1px !important;
-        }
+    .manifesto-section-middle .manifesto-subtitle {
+        font-size: 1rem !important;
+        margin-top: -1px !important;
     }
 
-    .restaurant-buttons{
-        button{
-            a{
-                font-size: 1rem;
-            }
-        }
-
+    .restaurant-buttons button a {
+        font-size: 1rem;
     }
 
-    .manifesto-text-big {
-        .manifesto-text-block {
-            .manifesto-text {
-                font-size: 6vw;
-            }
-
-            img {
-                width: 80%;
-                margin: 10px auto;
-            }
-        }
+    .manifesto-text-big .manifesto-text-block .manifesto-text {
+        font-size: 6vw;
     }
-    
 
+    .manifesto-text-big .manifesto-text-block img {
+        width: 80%;
+        margin: 10px auto;
+    }
 }
+
+// Popup Reservation 
+
+/* Popup frame avec 50% de largeur et des bordures arrondies */
+.popup-reservation-frame {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0); /* Centre la popup horizontalement */
+    width: 50%; /* La popup occupe 50% de la largeur de l'écran */
+    max-width: 600px;
+    background-color: white;
+    z-index: 1000;
+    border: 2px solid #ccc;
+    border-radius: 15px; /* Bordures arrondies */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    font-family: 'Apercu Mono' !important;
+    display: none;
+}
+
+/* En-tête avec bouton pour fermer la popup */
+.popup-reservation-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ddd;
+}
+
+.popup-reservation-close {
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+}
+
+/* Le contenu de la popup */
+.popup-reservation-content {
+    padding: 20px;
+}
+
+/* Pleine largeur pour le formulaire dans la popup */
+.reservation-form-container {
+    width: 100%; /* Le formulaire occupe toute la largeur disponible */
+}
+
+.reservation-form {
+    width: 100%; /* Formulaire en pleine largeur dans la popup */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+/* Centrage et style du texte */
+.reservation-form h2 {
+    text-align: center;
+    font-size: 18px;
+}
+
+.reservation-form p {
+    text-align: center;
+}
+
+/* Espacement des champs du formulaire */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Bouton "Réserver" en noir */
+.reservation-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #000; /* Noir */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.reservation-button:hover {
+    background-color: #333; /* Gris foncé au survol */
+}
+
+@media (max-width: 768px) {
+    .popup-reservation-frame {
+        width: 95%; /* 95% de largeur sur mobile */
+        height: 95vh; /* 95% de la hauteur de l'écran */
+        top: 2.5%; /* Centrer la popup verticalement */
+        left: 2.5%; /* Centrer la popup horizontalement */
+        transform: none; /* Pas de translation sur mobile */
+        border-radius: 10px; /* Ajuster les bordures arrondies */
+    }
+
+    .popup-reservation-content {
+        height: calc(100% - 40px); /* Ajuster la hauteur pour laisser de l'espace à l'en-tête */
+        overflow-y: auto; /* Activer le défilement si nécessaire */
+    }
+
+    .popup-reservation-header {
+        height: 40px; /* En-tête plus petit pour les mobiles */
+        padding: 10px;
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .popup-reservation-close {
+        font-size: 24px;
+        cursor: pointer;
+        color: #555;
+    }
+}
+
+//  Swxiper Slides 
+
+.manifesto-slide {
+    font-family: 'JeanLuc Thin', sans-serif;
+    color: #000;
+    background-color: red; /* Couleur de fond temporaire pour visualiser */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 2rem;
+    text-align: center;
+}
+
+.manifesto-slide h1, .manifesto-slide h2, .manifesto-slide p {
+    margin: 1rem 0;
+}
+
+.manifesto-slide h1 {
+    font-size: 4vw;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.manifesto-slide h2 {
+    font-size: 3vw;
+    margin-top: 0.5rem;
+}
+
+.manifesto-slide p {
+    font-size: 2.5vw;
+    margin-bottom: 1rem;
+}
+
+.manifesto-slide img {
+    max-width: 50%;
+    height: auto;
+    margin-top: 1.5rem;
+}
+
+
+
+
+
+
+
