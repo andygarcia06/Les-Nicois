@@ -52,7 +52,7 @@ a {
   /* Ajustez cette valeur pour rapprocher ou éloigner le trait de la lettre */
   width: 20px;
   /* Largeur du trait */
-  height: 7px;
+  height: 5px;
   /* Épaisseur du trait */
   background-color: black;
   /* Couleur du trait */ }
@@ -77,7 +77,7 @@ a {
 
 #preloader h1 {
   font-family: 'JeanLuc Thin';
-  font-size: 450%; }
+  font-size: 350%; }
 
 /* Styles pour la page d'accueil */
 body.index-body {
@@ -391,16 +391,16 @@ body.restaurant-body {
     /* Réduire encore plus l'espacement entre les boutons */ } }
 /* Instagram Section */
 .instagram-section {
-  background-color: #000;
+  background-color: white !important s;
   width: 100%;
   padding: 20px;
   text-align: center;
-  color: white; }
+  color: black; }
 
 .instagram-title {
   font-family: "JeanLuc Thin", Arial, sans-serif;
   font-size: 2vw;
-  color: white;
+  color: black;
   margin-bottom: 20px; }
 
 .instagram-feed {
@@ -411,7 +411,7 @@ body.restaurant-body {
 
 .instagram-post {
   width: calc(33% - 10px);
-  background-color: #f5f5f5;
+  background-color: white;
   padding: 10px;
   text-align: center; }
 
@@ -880,10 +880,12 @@ body.shop-body {
 .manifesto-ig-container {
   text-align: center;
   margin: 20px 0;
-  background-color: #000;
-  color: white;
+  background-color: white;
+  color: black;
   padding-top: 5vh;
-  padding-bottom: 5vh; }
+  padding-bottom: 5vh;
+  border-bottom: 18px solid black !important;
+  border-top: 18px solid black; }
   .manifesto-ig-container h2 {
     font-family: "JeanLuc Thin", Arial, sans-serif;
     font-size: 150% !important; }
