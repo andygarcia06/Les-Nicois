@@ -96,21 +96,29 @@ window.addEventListener('resize', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const infoEncart = document.getElementById('index-infos-encart');
     const infoMenu = document.getElementById('index-infos-menu');
-    let menuOpen = false;
+    const restaurantButtons = document.querySelectorAll('.restaurant-button');
 
+    let menuOpen = false;
     infoEncart.addEventListener('click', function() {
         if (!menuOpen) {
-            // Ouvrir le menu en l'animant de la gauche vers la droite
-            infoMenu.classList.add('active');
+            // Ajouter l'animation pour déplacer l'encart vers la droite
+            infoEncart.classList.add('active');
+            restaurantButtons.forEach(button => button.classList.add('info-active')); // Ajouter la classe aux boutons
+            setTimeout(() => {
+                infoMenu.classList.add('active');
+            }, 500); // Attendre que l'encart soit complètement à droite avant d'afficher le menu
             menuOpen = true;
         } else {
-            // Fermer le menu en le rétractant vers la gauche
+            // Fermer le menu d'abord, puis déplacer l'encart vers la gauche
             infoMenu.classList.remove('active');
+            restaurantButtons.forEach(button => button.classList.remove('info-active')); // Retirer la classe des boutons
+            setTimeout(() => {
+                infoEncart.classList.remove('active');
+            }, 500); // Attendre que le menu se ferme avant de ramener l'encart à gauche
             menuOpen = false;
         }
     });
 });
-
 
 
 

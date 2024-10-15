@@ -410,6 +410,12 @@ body.restaurant-body {
   .restaurant-button a:hover {
     color: #000; }
 
+/* Style des boutons quand l'info est active */
+.restaurant-button.info-active {
+  background-color: white; }
+  .restaurant-button.info-active a {
+    color: black; }
+
 @media (max-width: 768px) {
   .restaurant-button {
     font-size: 3vw;
@@ -448,7 +454,7 @@ body.restaurant-body {
     margin-right: 10px; }
     .manifesto-ig-container .manifesto-ig-left img {
       width: 100%;
-      height: 98.5%;
+      height: 104.7%;
       object-fit: cover;
       /* Garde l'image entière et la remplit */ }
   .manifesto-ig-container .manifesto-ig-middle {

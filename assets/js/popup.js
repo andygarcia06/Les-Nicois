@@ -86,3 +86,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const infoEncart = document.getElementById('index-infos-encart');
+    const infoMenu = document.getElementById('index-infos-menu');
+    const restaurantButtons = document.querySelector('.restaurant-buttons');
+
+    // Fonction pour ouvrir et fermer le menu Infos
+    infoEncart.addEventListener('click', function() {
+        infoMenu.classList.toggle('active'); // Ajoute/enlève la classe active
+
+        // Vérifie si le menu est ouvert
+        if (infoMenu.classList.contains('active')) {
+            restaurantButtons.classList.add('menu-active'); // Ajoute la classe pour les boutons
+        } else {
+            restaurantButtons.classList.remove('menu-active'); // Enlève la classe
+        }
+    });
+});
