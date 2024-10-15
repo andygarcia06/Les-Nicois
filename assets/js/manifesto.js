@@ -73,11 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const accessToken = 'IGQWROZAmRBa2ZAMd1dubWR6YnhKMVJYdWpHR0FqR2FXRDE1UFYtRXd5NTVudEI2TFU4MG53ZAmplYlp3SzhDRDcxa0RCQlpRTENCWXVqd3BNMmtoQkhwV3NxWFo2eTdmQmZAoMm1HSlN2NF9aZAwZDZD';
+    const accessToken = 'IGQWROOF93MnhiaXRqcHZATbDNVa2R5c0dmVjhKUHE4SVNteEtLbGh0c2NhV0hGWnNSUjlieG9KVTNnenBOUnFDWnJORy1kTmxCbmlKQ2VFSmdneUE5R2N4a0NqUmhaRmU0ZADdNS0ZACck9SQQZDZD';
 
     async function fetchInstagramData() {
         try {
-            // Récupérer les données depuis l'API via le serveur
+            // Récupérer les données depuis l'API
             const response = await fetch(`http://localhost:3000/fetch-instagram-data?access_token=${accessToken}`);
             const data = await response.json();
     
@@ -92,61 +92,39 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Erreur lors de la récupération des données:', error);
         }
     }
-    
+
     function displayInstagramData(data) {
         const { username, media } = data;
 
-        // Vérifier qu'on a bien au moins 18 photos
-        if (media.length < 18) {
-            console.error('Moins de 18 photos disponibles.');
+        // Vérifier qu'on a bien 7 photos
+        if (media.length < 8) {
+            console.error('Moins de 8 photos disponibles.');
             return;
         }
-    
+
         // Afficher le nom d'utilisateur
         const usernameSection = document.getElementById('instagram-username');
         if (usernameSection) {
             usernameSection.innerHTML = `<h3>@${username}</h3>`;
         }
 
-        // Diviser les 18 photos en 3 blocs de 6 photos
-        const block1Photos = media.slice(0, 6);  // Les 6 dernières photos
-        const block2Photos = media.slice(6, 12); // Les 6 suivantes
-        const block3Photos = media.slice(12, 18); // Les 6 plus anciennes
-
-        // Afficher les photos dans le block 1
-        const block1Section = document.getElementById('block-1');
-        if (block1Section) {
-            block1Section.innerHTML = block1Photos.map(photo => `
-                <div class="photo">
-                    <img src="${photo.media_url}" alt="${photo.caption || 'Photo Instagram'}">
-                </div>
-            `).join('');
-        }
-
-        // Afficher les photos dans le block 2
-        const block2Section = document.getElementById('block-2');
-        if (block2Section) {
-            block2Section.innerHTML = block2Photos.map(photo => `
-                <div class="photo">
-                    <img src="${photo.media_url}" alt="${photo.caption || 'Photo Instagram'}">
-                </div>
-            `).join('');
-        }
-
-        // Afficher les photos dans le block 3
-        const block3Section = document.getElementById('block-3');
-        if (block3Section) {
-            block3Section.innerHTML = block3Photos.map(photo => `
-                <div class="photo">
-                    <img src="${photo.media_url}" alt="${photo.caption || 'Photo Instagram'}">
-                </div>
-            `).join('');
-        }
+        // Remplir les images dans les bons blocs
+        document.getElementById('large-image').src = media[0].media_url; // Grande image
+        document.getElementById('center-image-1').src = media[1].media_url; // 1ère image centre
+        document.getElementById('center-image-2').src = media[2].media_url; // 2ème image centre
+        document.getElementById('right-image-1').src = media[3].media_url; // 1ère image droite colonne 1
+        document.getElementById('right-image-2').src = media[4].media_url; // 2ème image droite colonne 1
+        document.getElementById('right-image-3').src = media[5].media_url; // 3ème image droite colonne 1
+        document.getElementById('right-image-4').src = media[6].media_url; // 1ère image droite colonne 2
+        document.getElementById('right-image-5').src = media[7].media_url; // 2ème image droite colonne 2
+        // Le logo Instagram est statique, pas besoin de le remplir avec l'API
     }
-    
+
     // Appel initial pour récupérer et afficher les données Instagram
     fetchInstagramData();
 });
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const swiper = new Swiper('.manifesto-swiper-container', {
@@ -162,3 +140,60 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Ouvrir la popup
+    document.querySelector("a[href='shop.html']").addEventListener("click", function(e) {
+        e.preventDefault(); // Empêcher le comportement par défaut
+        document.getElementById("wip-popup").style.display = "block";
+    });
+
+    // Fermer la popup
+    document.querySelector(".wip-popup-close").addEventListener("click", function() {
+        document.getElementById("wip-popup").style.display = "none";
+    });
+
+    // Rendre la popup déplaçable
+    dragElement(document.getElementById("wip-popup"));
+
+    function dragElement(element) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        var header = element.querySelector(".wip-popup-header");
+
+        if (header) {
+            header.onmousedown = dragMouseDown;
+            header.classList.add('grab'); // Ajouter la classe "grab" par défaut
+        }
+
+        function dragMouseDown(e) {
+            e.preventDefault();
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+
+            // Changer le curseur en "grabbing" (main fermée)
+            header.classList.remove('grab');
+            header.classList.add('grabbing');
+
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            element.style.top = (element.offsetTop - pos2) + "px";
+            element.style.left = (element.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+
+            // Remettre le curseur en "grab" (main ouverte)
+            header.classList.remove('grabbing');
+            header.classList.add('grab');
+        }
+    }
+});

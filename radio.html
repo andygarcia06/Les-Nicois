@@ -14,15 +14,16 @@
     <meta name="view-transition" content="same-origin"/>
 </head>
 <body class="radio-body">
+    <nav class="restaurant-nav">
+        <ul>
+            <li><a href="restaurant-2.html">Resto</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="radio.html" class="active">Radio</a></li>
+        </ul>
+    </nav>
     <div id="content" class="transition-content">
         <header>
-            <nav class="restaurant-nav">
-                <ul>
-                    <li><a href="restaurant-2.html">Resto</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="radio.html" class="active">Radio</a></li>
-                </ul>
-            </nav>
+
         </header>
         <main>
             <section class="radio-section">
@@ -37,8 +38,46 @@
             <audio id="radio-player"  src="https://str0.creacast.com/purelectro2" preload="none"></audio>
 
         </main>
+          <!-- Encart Info -->
+          <div id="index-infos-encart" class="index-infos-encart">
+            <p>Infos</p>
+        </div>
+    
+        <!-- Menu Infos -->
+        <div id="index-infos-menu" class="index-infos-menu">
+            <div class="index-infos-menu-content">
+                <div class="index-infos-left">
+                    <h2>LES NIÇOIS</h2>
+                    <p>SAS ET ALORS<br>14, rue Saint-Lazare<br>75009 Paris</p>
+                </div>
+                <div class="index-infos-center">
+                    <h3>INFOS LÉGALES</h3>
+                    <p><a href="">CGV</a></p>
+                    <p><a href="">CGU</a></p>
+                    <p><a href="">Politique de confidentialité</a></p>
+                    <p><a href="">Contact</a></p>
+                </div>
+                <div class="index-infos-right">
+                    <h3>SUIVEZ-NOUS</h3>
+                    <div class="index-infos-social-icons">
+                        <a href="https://facebook.com" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/transition.js"></script>
+    <script src="assets/js/features.js"></script>
+    <script src="assets/js/animation.js"></script>
     <script src="assets/js/transition.js"></script>
     <script src="assets/js/features.js"></script>
 </body>

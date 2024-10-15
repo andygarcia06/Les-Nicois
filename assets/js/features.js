@@ -2,10 +2,14 @@
 window.playRadio = function() {
     const player = document.getElementById('radio-player');
     const playPauseButton = document.getElementById('play-pause-button');
+    const navPlayPauseButton = document.getElementById('nav-play-pause-button');
 
     player.play();
     if (playPauseButton) {
         playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+    }
+    if (navPlayPauseButton) {
+        navPlayPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
     }
     localStorage.setItem('radioPlaying', 'true');
 }
@@ -14,10 +18,14 @@ window.playRadio = function() {
 window.pauseRadio = function() {
     const player = document.getElementById('radio-player');
     const playPauseButton = document.getElementById('play-pause-button');
+    const navPlayPauseButton = document.getElementById('nav-play-pause-button');
 
     player.pause();
     if (playPauseButton) {
         playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+    }
+    if (navPlayPauseButton) {
+        navPlayPauseButton.innerHTML = '<i class="fas fa-play"></i>';
     }
     localStorage.setItem('radioPlaying', 'false');
 }
@@ -38,16 +46,23 @@ function restoreRadioState() {
     const radioPlaying = localStorage.getItem('radioPlaying');
     const player = document.getElementById('radio-player');
     const playPauseButton = document.getElementById('play-pause-button');
+    const navPlayPauseButton = document.getElementById('nav-play-pause-button');
 
     if (radioPlaying === 'true' && player.paused) {
         player.play();
         if (playPauseButton) {
             playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
         }
+        if (navPlayPauseButton) {
+            navPlayPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+        }
     } else if (radioPlaying === 'false' && !player.paused) {
         player.pause();
         if (playPauseButton) {
             playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+        }
+        if (navPlayPauseButton) {
+            navPlayPauseButton.innerHTML = '<i class="fas fa-play"></i>';
         }
     }
 }
@@ -94,11 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
     bindLinkClickHandlers();
 });
 
-// Si le bouton existe sur la page, on ajoute l'événement toggle
+// Si les boutons existent sur la page, on ajoute les événements toggle
 document.addEventListener('DOMContentLoaded', () => {
     const playPauseButton = document.getElementById('play-pause-button');
+    const navPlayPauseButton = document.getElementById('nav-play-pause-button');
+
     if (playPauseButton) {
         playPauseButton.addEventListener('click', toggleRadioState);
     }
-});
 
+    if (navPlayPauseButton) {
+        navPlayPauseButton.addEventListener('click', toggleRadioState);
+    }
+});

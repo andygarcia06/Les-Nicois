@@ -93,3 +93,24 @@ window.addEventListener('resize', function() {
     applyTapToShowContent();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const infoEncart = document.getElementById('index-infos-encart');
+    const infoMenu = document.getElementById('index-infos-menu');
+    let menuOpen = false;
+
+    infoEncart.addEventListener('click', function() {
+        if (!menuOpen) {
+            // Ouvrir le menu en l'animant de la gauche vers la droite
+            infoMenu.classList.add('active');
+            menuOpen = true;
+        } else {
+            // Fermer le menu en le rétractant vers la gauche
+            infoMenu.classList.remove('active');
+            menuOpen = false;
+        }
+    });
+});
+
+
+
+

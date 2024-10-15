@@ -128,7 +128,6 @@ body.index-body {
     top: 40px !important;
 }
 
-/* Style des sections */
 .index-section {
     position: relative;
     margin: 0 2px;
@@ -142,30 +141,55 @@ body.index-body {
     justify-content: center;
     align-items: center;
     float: left; /* Les sections sont flottées pour être côte à côte horizontalement */
-    transition: background-color 0.5s ease; /* Transition de la couleur de fond */
-    
+    transition: background-color 0.5s ease;
+
     /* Pseudo-élément pour l'animation du fond */
     &:before {
         content: '';
         position: absolute;
         top: 0;
-        left: 0;
-        width: 0%; /* Départ à 0% */
         height: 100%;
-        background-color: white; /* Fond blanc qui va se dérouler de gauche à droite */
-        transition: width 0.5s ease; /* Transition pour faire passer la largeur de 0% à 100% */
-        z-index: 0; /* Derrière le contenu */
+        background-color: white;
+        z-index: 0;
+        transition: width 0.5s ease, left 0.5s ease, right 0.5s ease;
+        width: 0%;
     }
 
-    /* Animation au hover */
-    &:hover:before {
-        width: 100%; /* Le fond blanc prend toute la largeur au survol */
+    /* Animation venant de la gauche */
+    &.hover-from-left:before {
+        left: 0;
+        right: auto;
+        width: 100%;
     }
-    /* Animation au survol */
-    &:hover {
-        background-color: white; /* La section devient blanche au survol */
+
+    /* Animation venant de la droite */
+    &.hover-from-right:before {
+        right: 0;
+        left: auto;
+        width: 100%;
+    }
+
+    /* Fermeture après hover depuis la gauche */
+    &:not(:hover).hover-from-left:before {
+        left: 0;
+        right: auto;
+        width: 0%;
+    }
+
+    /* Fermeture après hover depuis la droite */
+    &:not(:hover).hover-from-right:before {
+        right: 0;
+        left: auto;
+        width: 0%;
+    }
+
+    .index-content {
+        position: relative;
+        z-index: 1;
+        color: black;
     }
 }
+
 
 #index-section-1 {
     background-image: url('../img/background/section-1.jpg'); /* Image pour la section 1 */
@@ -299,6 +323,37 @@ body.restaurant-body {
         &.active {
             background: #fff;
             color: #000;
+        }
+
+          /* Positionnement du bouton Play/Pause */
+          .nav-play-pause {
+            position: absolute;
+            right: -40px; /* Positionné à droite du lien "Radio" */
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.2rem;
+            z-index: 2; /* Bouton Play/Pause au-dessus */
+            transition: transform 0.3s ease;
+        }
+
+        /* Quand l'icône change de play à pause, le texte "Radio" se décale légèrement vers la gauche */
+        .fa-pause {
+            transform: scale(1.2); /* Agrandir l'icône pause */
+            transition: transform 0.3s ease;
+        }
+
+        /* Déplacer le lien "Radio" quand l'icône change */
+        .nav-play-pause.fa-pause ~ a {
+            transform: translateX(-10px); /* Décale "Radio" vers la gauche */
+        }
+
+        /* Bouton Play/Pause au hover */
+        .nav-play-pause:hover {
+            color: yellow; /* Couleur au hover */
         }
     }
 }
@@ -445,41 +500,171 @@ body.restaurant-body {
 }
 
 
+// Instragram
 
-/* Instagram Section */
-.instagram-section {
-    background-color: white !importants;
-    width: 100%;
+.manifesto-ig-container {
     padding: 20px;
-    text-align: center;
-    color: black;
+    background-color: #fff;
+    height: 100vh;
+
+    border: 10px solid black;
+
+    .manifesto-ig-row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Colonne gauche - Grande image */
+    .manifesto-ig-left {
+        width: 40%; /* Prend 40% de la largeur */
+        height: 100%; /* Prendre toute la hauteur du container */
+        margin-right: 10px;
+
+        img {
+            width: 100%;
+            height: 98.5%;
+            object-fit: cover; /* Garde l'image entière et la remplit */
+        }
+    }
+
+    /* Colonne du milieu - Deux images empilées */
+    .manifesto-ig-middle {
+        width: 25%; /* Ajustement pour équilibrer avec les autres colonnes */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        margin-right: 10px;
+
+        .manifesto-ig-image {
+            flex: 1;
+            margin-bottom: 10px; /* Espacement entre les deux images */
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    /* Colonne droite - Deux sous-colonnes */
+    .manifesto-ig-right {
+        width: 35%; /* Ajusté pour que les images rentrent correctement */
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+
+        /* Sous-colonnes de droite */
+        .manifesto-ig-right-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 48%; /* Chaque sous-colonne prend environ 48% */
+            height: 100%;
+
+            /* Carrés parfaits pour les images */
+            .manifesto-ig-small-image{
+                width: 100%;
+                padding-bottom: 100%; /* Carré parfait */
+                position: relative;
+                margin-bottom: 10px;
+
+                img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover; /* S'assure que l'image remplit le carré */
+                }
+            }
+
+            .manifesto-ig-logo {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                padding-bottom: 100%; /* Carré parfait */
+                position: relative;
+                margin-bottom: 10px;
+            
+                /* Logo Instagram */
+                .manifesto-ig-instagram-logo {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 20%;
+                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 30px !important;
+                    margin: auto;
+                }
+            
+                /* Container du bouton pour le centrer */
+                .manifesto-ig-button-container {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                }
+            
+                /* Bouton Instagram */
+                .manifesto-ig-button {
+                    background-color: black;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 50px;
+                    font-family: 'Apercu Mono', monospace;
+                    font-size: 1.2rem;
+                    text-decoration: none;
+                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                    text-align: center;
+                }
+            
+                .manifesto-ig-button:hover {
+                    background-color: #444;
+                }
+            }
+            
+            
+        }
+
+        /* Logo Instagram au même format que les images */
+        .manifesto-ig-logo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    /* Media queries pour ajuster en responsive */
+    @media (max-width: 1024px) {
+        .manifesto-ig-row {
+            flex-direction: column;
+        }
+
+        .manifesto-ig-left,
+        .manifesto-ig-middle,
+        .manifesto-ig-right {
+            width: 100%;
+            height: auto;
+        }
+
+        .manifesto-ig-right {
+            flex-direction: column;
+        }
+
+        .manifesto-ig-right-column {
+            width: 100%;
+        }
+    }
 }
 
-.instagram-title {
-    font-family: $title-font;
-    font-size: 2vw;
-    color: black;
-    margin-bottom: 20px;
-}
 
-.instagram-feed {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
 
-.instagram-post {
-    width: calc(33% - 10px);
-    background-color: white;
-    padding: 10px;
-    text-align: center;
-}
 
-.instagram-post img {
-    width: 100%;
-    height: auto;
-}
+
+
 
 @media (max-width: 768px) {
     .restaurant-title {
@@ -550,154 +735,131 @@ body.restaurant-body {
 }
 
 /* Styles pour radio.html */
-body.radio-body {
+body.radio-body .transition-content{
     width: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: $background-blue;
-    font-family: $primary-font;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch; /* iOS overflow scrolling */
-    scroll-behavior: smooth; /* Smooth scrolling */
     background-color: #000;
+    font-family: 'YourPrimaryFont'; /* Assure-toi que cette police est bien importée */
+    overflow-y: hidden; /* Désactiver le scroll pour que tout soit centré verticalement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Hauteur de 100% pour centrer verticalement */
+
+    .radio-player-info{
+        width: 100%;
+        margin-top: -150px;
+        text-align: center;
+    }
 }
 
-.radio-section{
-    margin: auto;
-    width: 50%;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
+/* Section centrale pour le logo et le player */
+.radio-section {
+    width: 100%;
     text-align: center;
 }
 
 .radio-title {
-    margin-top: 10vh;
-    font-size: 8rem !important;
-    margin-right: 10px;
+    font-size: 15rem; /* Taille plus grande du titre */
     color: white;
-    font-family: $title-font;
+    font-family: 'JeanLuc Thin'; /* Police spécifique */
+    letter-spacing: 5px;
 
-    span{
-        font-size: 3rem !important;
-        position: relative;
-        bottom: 5vh;
-        left: 18px;
+    span {
+        font-size: 6rem; /* Taille réduite pour le sous-titre */
+        display: block;
     }
 }
 
-.radio-player-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
+/* Styles pour le bouton play/pause */
 .radio-button {
-    background-color: black;
-    position: absolute;
-    top: 25vh;
-    color: white !important;
+    margin: 5vh auto;
+    background-color: white;
     border: none;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     cursor: pointer;
-    transition: all 0.6s ease;
+    transition: all 0.3s ease;
     color: black;
-
-    i{
-        transform: scale(2);
-    }
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-.song-info {
-    margin-left: 20px;
-    font-size: 1.2rem;
+.radio-button i {
+    font-size: 4rem; /* Taille de l'icône de lecture */
+    color: black;
 }
 
-.song-info p {
-    margin: 0;
-}
-
-#song-title {
-    text-decoration: underline;
-    font-size: 1.4rem;
-}
-
-/* Media Query pour les tablettes */
+/* Ajustements pour les tablettes */
 @media (max-width: 1024px) {
     .radio-title {
-        font-size: 6rem !important;
-        margin-top: 8vh;
+        font-size: 10rem;
     }
 
     .radio-title span {
-        font-size: 2.5rem !important;
-        bottom: 4vh;
-        left: 15px;
+        font-size: 4rem;
+    }
+
+    .radio-button {
+        width: 120px;
+        height: 120px;
+        font-size: 2rem;
+    }
+
+    .radio-button i {
+        font-size: 3rem;
     }
 }
 
-/* Media Query pour les smartphones */
+/* Ajustements pour les smartphones */
 @media (max-width: 768px) {
     .radio-title {
-        font-size: 4.5rem !important;
-        margin-top: 6vh;
+        font-size: 8rem;
     }
 
     .radio-title span {
-        font-size: 2rem !important;
-        bottom: 3vh;
+        font-size: 3rem;
+    }
+
+    .radio-button {
+        width: 100px;
+        height: 100px;
+        font-size: 1.8rem;
+    }
+
+    .radio-button i {
+        font-size: 2.5rem;
     }
 }
 
-/* Media Query pour les très petits écrans */
+/* Ajustements pour les très petits écrans */
 @media (max-width: 480px) {
     .radio-title {
-        font-size: 4.5rem !important;
-        margin-top: 2vh;
+        font-size: 6rem;
     }
 
     .radio-title span {
-        font-size: 1.5rem !important;
-        top: 7vh;
-        left: -110px !important;
+        font-size: 2rem;
+    }
+
+    .radio-button {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5rem;
+    }
+
+    .radio-button i {
+        font-size: 2rem;
     }
 }
 
-/* View transition */
-@keyframes move-out {
-    from {
-        transform: translateY(0%);
-    }
 
-    to {
-        transform: translateY(-100%);
-    }
-}
-
-@keyframes move-in {
-    from {
-        transform: translateX(100%);
-    }
-
-    to {
-        transform: translateX(0%);
-    }
-}
-
-::view-transition-old(root) {
-    animation: 0.4s ease-in both move-out;
-}
-
-::view-transition-new(root) {
-    animation: 0.4s ease-in both move-in;
-}
 
 // RESRERVATION.HTML
 
@@ -982,6 +1144,7 @@ body.shop-body {
     font-family: $title-font;
     margin-bottom: -3vh;
     overflow: hidden; // Désactiver le scroll interne
+    border-bottom: 10px solid black;
 }
 
 // Chaque section occupe 100% de la hauteur et 33% de la largeur en écran large
@@ -1105,84 +1268,88 @@ body.shop-body {
 .manifesto-ig-container {
     text-align: center;
     margin: 20px 0;
-    background-color: white;
-    color: black;
     padding-top: 5vh;
     padding-bottom: 5vh;
-    border-bottom: 18px solid black !important;
-    border-top: 18px solid black ;
-
-
-    h2 {
-        font-family: $title-font;
-        font-size: 150% !important;
-    }
 }
 
-// Styles des sections Instagram
-#instagram-username h3 {
+.manifesto-ig-container h2 {
+    font-family: Arial, sans-serif;
+    font-size: 150%;
+}
+
+#manifesto-ig-username {
     margin-bottom: 20px;
-    font-family: $title-font;
+    font-family: Arial, sans-serif;
+    font-size: 1.5rem;
+    color: #333;
 }
 
-.row {
+.manifesto-ig-row {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-.block {
+.manifesto-ig-block-large {
+    width: 50%; /* Bloc gauche avec la grande image */
     display: flex;
-    flex-wrap: wrap;
-    width: 30%; // Chaque bloc occupe environ 1/3 de la ligne
+    justify-content: center;
 }
 
-.photo {
-    width: 33.33%; // 3 photos par ligne
-    padding: 5px;
+.manifesto-ig-block-medium {
+    width: 100%; /* Section avec les deux images empilées */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50%; /* 50% de la colonne de droite */
 }
 
-.photo img {
+.manifesto-ig-block-small {
+    width: 100%; /* Section avec les trois images empilées */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50%; /* 50% de la colonne de droite */
+}
+
+.manifesto-ig-right-column {
+    width: 50%; /* La colonne de droite prend 50% */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.manifesto-ig-photo img {
     width: 100%;
     height: auto;
     border-radius: 5px;
 }
 
-// Texte Manifesto
-.manifesto-text-big {
-    padding: 20px;
-    background-color: #fff;
-
-    .manifesto-text-title {
-        height: 60vh;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-
-        h2 {
-            font-size: 5rem !important;
-        }
-    }
-
-    .manifesto-text-block {
-        margin-bottom: 30px;
-        text-align: center;
-
-        .manifesto-text {
-            font-family: $title-font;
-            font-size: 8vw;
-            text-transform: uppercase;
-            line-height: 1.2;
-            margin: 0 0 20px 0;
-        }
-
-        img {
-            width: 50%;
-            margin: 20px 0;
-            display: block;
-        }
-    }
+.manifesto-ig-instagram-logo {
+    margin-top: 20px;
+    text-align: center;
 }
+
+.manifesto-ig-instagram-logo img {
+    width: 100px;
+    height: auto;
+}
+
+.manifesto-ig-instagram-logo a {
+    display: block;
+    font-size: 1.2rem;
+    color: #333;
+    text-decoration: none;
+}
+
+.manifesto-ig-instagram-logo a:hover {
+    color: #000;
+}
+
+
 
 // Style de la section Swiper
 .manifesto-swiper-container {
@@ -1355,14 +1522,14 @@ body.shop-body {
     display: flex;
     justify-content: flex-end;
     padding: 10px;
-    background-color: #f7f7f7;
+    background-color: black;
     border-bottom: 1px solid #ddd;
 }
 
 .popup-reservation-close {
     font-size: 24px;
     cursor: pointer;
-    color: #555;
+    color: white;
 }
 
 /* Le contenu de la popup */
@@ -1497,9 +1664,291 @@ body.shop-body {
     margin-top: 1.5rem;
 }
 
+// WIP POPUP
+
+/* Styles pour la popup */
+.wip-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 700px;
+    height: 90vh;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: none;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'JeanLuc Thin';
+}
+
+/* Header de la popup */
+.wip-popup-header {
+    padding: 15px;
+    background-color: black;
+    color: white;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wip-popup-title {
+    font-size: 4rem;
+    margin: 0;
+}
+
+.wip-popup-close {
+    font-size: 2rem;
+    cursor: pointer;
+    position: relative;
+    left: 96%;
+}
+
+/* Corps de la popup */
+.wip-popup-body {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Texte au-dessus et en dessous de l'image */
+.wip-popup-text {
+    font-size: 4rem;
+    margin-top: -30px;
+    text-transform: uppercase;
+}
+
+.wip-popup-image {
+    width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .wip-popup {
+        width: 95%;
+        height: 100vh;
+    }
+
+    .wip-popup-header {
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+
+    .wip-popup-close {
+        font-size: 1.5rem;
+    }
+
+    .wip-popup-body {
+        padding: 15px;
+    }
+
+    .wip-popup-text {
+        font-size: 1.2rem;
+    }
+
+    .wip-popup-image {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.grab {
+    cursor: pointer;  /* Curseur main ouverte */
+}
+
+/* Icône de main fermée quand l'utilisateur "grab" */
+.grabbing {
+    cursor: grabbing;  /* Curseur main fermée */
+}
+
+/* Encart Infos collé à gauche */
+.index-infos-encart {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: black;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 1.2rem;
+    font-family: 'JeanLuc Thin';
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
 
 
+}
 
+/* Menu Infos en bas */
+.index-infos-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Initialement masqué */
+    height: 30vh; /* Menu hauteur de 30vh */
+    background-color: black;
+    color: white;
+    z-index: 999;
+    overflow: hidden; /* Empêcher le débordement */
+    transition: width 0.5s ease-in-out; /* Animation de l'élargissement du menu */
+    h2, h3 {
+        margin-bottom: 10px;
+        font-family: 'JeanLuc Thin';
+    }
+    
+    p {
+        margin: 0;
+        font-family: 'Apercu Mono';
+
+    }
+}
+
+.index-infos-menu.active {
+    width: 100%; /* Déployer le menu sur toute la largeur */
+}
+
+.index-infos-menu-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.index-infos-menu.active .index-infos-menu-content {
+    opacity: 1; /* Faire apparaître le contenu après l'animation */
+}
+
+.index-infos-left, .index-infos-center, .index-infos-right {
+    width: 30%;
+}
+
+.index-infos-social-icons img {
+    width: 25px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.index-infos-social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.index-infos-social-icons a {
+    color: white; /* Liens en blanc */
+    font-size: 2rem; /* Augmenter la taille des icônes */
+    margin-right: 15px; /* Espacement entre les icônes */
+    text-decoration: none; /* Retirer la sous-ligne */
+}
+
+.index-infos-social-icons a:hover {
+    color: #f0f0f0; /* Légère différence de couleur au hover */
+}
+
+.index-infos-social-icons i {
+    font-size: 2rem; /* Icônes plus grandes */
+    color: white; /* Couleur des icônes en blanc */
+}
+
+.index-infos-menu a {
+    color: white; /* Liens en blanc */
+    text-decoration: none; /* Pas de soulignement */
+    font-size: 1rem; /* Taille du texte des liens */
+}
+
+.index-infos-menu a:hover {
+    color: #f0f0f0; /* Légère différence au hover pour les liens */
+}
+
+
+/* Media Queries pour tablettes */
+@media (max-width: 1024px) {
+    .index-infos-menu-content {
+        flex-direction: column; /* Réorganiser en colonne */
+        align-items: center; /* Centrer les éléments */
+    }
+
+    .index-infos-left, .index-infos-center, .index-infos-right {
+        width: 100%; /* Les blocs prennent 100% de la largeur */
+        text-align: center; /* Centrer le texte */
+        margin-bottom: 20px; /* Espacement en bas */
+    }
+
+    .index-infos-social-icons i {
+        font-size: 24px; /* Agrandir légèrement les icônes pour les tablettes */
+        margin: 0 10px;
+    }
+}
+
+/* Media Queries pour téléphones mobiles */
+@media (max-width: 768px) {
+    .index-infos-menu {
+        height: 40vh; /* Augmenter la hauteur pour les téléphones */
+    }
+
+    .index-infos-social-icons i {
+        font-size: 20px; /* Réduire légèrement les icônes pour mobiles */
+    }
+
+    .index-infos-left h2, .index-infos-center h3, .index-infos-right h3 {
+        font-size: 1.2rem; /* Réduire la taille des titres sur mobiles */
+    }
+
+    p {
+        font-size: 0.9rem; /* Réduire la taille du texte pour les paragraphes */
+    }
+
+    /* Ajout d'un padding supplémentaire pour éviter le chevauchement */
+    .index-infos-menu-content {
+        padding: 10px;
+    }
+}
+
+/* Media Queries pour très petits écrans (moins de 480px) */
+@media (max-width: 480px) {
+    .index-infos-social-icons i {
+        font-size: 18px; /* Encore un peu plus petit pour les très petits écrans */
+    }
+
+    h2, h3 {
+        font-size: 1rem; /* Titres encore plus petits */
+    }
+
+    p {
+        font-size: 0.8rem; /* Texte encore plus petit */
+    }
+}
+
+/* Styles pour le bouton Play/Pause dans la navigation */
+.nav-play-pause {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 3000;
+    right: 20px;
+}
+
+.nav-play-pause i {
+    font-size: 1.2rem;
+    color: white; /* Icône en blanc */
+}
+
+/* Changement d'apparence du bouton au survol */
+.nav-play-pause:hover {
+    color: #FFD700; /* Couleur survolée */
+}
 
 
 

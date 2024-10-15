@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -22,7 +24,11 @@
             <ul>
                 <li><a href="restaurant-2.html" class="active">Resto</a></li>
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="radio.html">Radio</a></li>
+                <li>
+                    <a href="radio.html">Radio</a>
+                    <!-- Bouton Play/Pause intégré dans le menu Radio -->
+                    <button class="nav-play-pause" id="nav-play-pause-button"><i class="fas fa-play"></i></button>
+                </li>
             </ul>
         </nav>
     </header>
@@ -53,15 +59,56 @@
         </div>
     </section>
     <section class="manifesto-ig-container">
-        <h2>Suivez-nous sur Instagram</h2>
-        <div id="instagram-username"></div>
-        <div class="row">
-            <div id="block-1" class="block"></div>
-            <div id="block-2" class="block"></div>
-            <div id="block-3" class="block"></div>
-        </div>
-    </section>
+
     
+    <div class="manifesto-ig-row">
+        <!-- Colonne gauche - Grande image -->
+        <div class="manifesto-ig-left">
+            <img id="large-image" src="#" alt="Grande image Instagram">
+        </div>
+
+        <!-- Colonne milieu - Deux images de taille réduite -->
+        <div class="manifesto-ig-middle">
+            <div class="manifesto-ig-image">
+                <img id="center-image-1" src="#" alt="Image centre 1">
+            </div>
+            <div class="manifesto-ig-image">
+                <img id="center-image-2" src="#" alt="Image centre 2">
+            </div>
+        </div>
+
+        <!-- Colonne droite - Deux sous-colonnes avec 3 images chacune -->
+        <div class="manifesto-ig-right">
+            <div class="manifesto-ig-right-column">
+                <div class="manifesto-ig-small-image">
+                    <img id="right-image-1" src="#" alt="Image droite 1">
+                </div>
+                <div class="manifesto-ig-small-image">
+                    <img id="right-image-2" src="#" alt="Image droite 2">
+                </div>
+                <div class="manifesto-ig-small-image">
+                    <img id="right-image-3" src="#" alt="Image droite 3">
+                </div>
+            </div>
+            <div class="manifesto-ig-right-column">
+                <div class="manifesto-ig-small-image">
+                    <img id="right-image-4" src="#" alt="Image droite 4">
+                </div>
+                <div class="manifesto-ig-small-image">
+                    <img id="right-image-5" src="#" alt="Image droite 5">
+                </div>
+                <div class="manifesto-ig-logo">
+                    <img src="./assets/img/mnt/instagram-logo.jpeg" alt="Instagram logo" class="manifesto-ig-instagram-logo">
+                    <div class="manifesto-ig-button-container">
+                        <a href="https://www.instagram.com/lesnicois" class="manifesto-ig-button">@lesnicois</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
     <section class="manifesto-swiper-container swiper">
         <div class="swiper-wrapper">
             <!-- Slide 1 -->
@@ -177,6 +224,18 @@
             </div>
         </div>
     </section>
+
+    <div id="wip-popup" class="wip-popup">
+        <div class="wip-popup-header">
+            <span class="wip-popup-close">&times;</span>
+        </div>
+        <div class="wip-popup-body">
+            <p class="wip-popup-title">ON EST ENCORE À LA PLAGE</p>
+            <img src="assets/img/mnt/Port Saint Laurent 10.jpg" alt="Port Saint Laurent" class="wip-popup-image">
+            <p class="wip-popup-text">MAIS ON S'Y MET BIENTÔT</p>
+        </div>
+    </div>
+    
     
     <div id="carte-popup" class="popup">
         <div class="popup-content">
@@ -192,8 +251,9 @@
         <div class="popup-reservation-content">
             <div class="reservation-form-container">
                 <div class="reservation-form">
-                    <h2>Pour les réservations de groupe de plus de 15 personnes, ou si tu veux privatiser un bout du resto, appelle-nous directement !</h2>
-                    <p>jess@lesnicois.com<br>0788789778</p>
+                    <h2>Envoie-nous ta demande en cliquant sur le bouton réserver !
+                        Si tu as des demandes particulières tu peux aussi nous envoyer un message sur insta, ou faire un mail à</h2>
+                    <p>jess@lesnicois.com</p>
                     <form>
                         <div class="form-group">
                             <label for="guests">Nombre de couverts</label>
@@ -217,11 +277,42 @@
             </div>
         </div>
     </div>
-    
-    
 
+        <!-- Encart Info -->
+        <div id="index-infos-encart" class="index-infos-encart">
+            <p>Infos</p>
+        </div>
     
-
+        <!-- Menu Infos -->
+        <div id="index-infos-menu" class="index-infos-menu">
+            <div class="index-infos-menu-content">
+                <div class="index-infos-left">
+                    <h2>LES NIÇOIS</h2>
+                    <p>SAS ET ALORS<br>14, rue Saint-Lazare<br>75009 Paris</p>
+                </div>
+                <div class="index-infos-center">
+                    <h3>INFOS LÉGALES</h3>
+                    <p><a href="">CGV</a></p>
+                    <p><a href="">CGU</a></p>
+                    <p><a href="">Politique de confidentialité</a></p>
+                    <p><a href="">Contact</a></p>
+                </div>
+                <div class="index-infos-right">
+                    <h3>SUIVEZ-NOUS</h3>
+                    <div class="index-infos-social-icons">
+                        <a href="https://facebook.com" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <div class="restaurant-buttons">
         <button class="restaurant-button"><a href="#" class="open-popup">La carte</a></button>
@@ -233,6 +324,7 @@
     <script src="assets/js/transition.js"></script>
     <script src="assets/js/popup.js"></script>
     <script src="assets/js/player"></script>
+    <script src="./assets//js/animation.js"></script>
 
 </body>
 
